@@ -21,13 +21,13 @@ module.exports = {
 
      },
      
-     {
+/*      {
 
       test: /\.(csv|tsv)$/i,
 
       use: ['csv-loader'],
 
-    },
+    }, */
 /*     {
       test: /\.(png|jpg|gif)$/i,
       use: [{

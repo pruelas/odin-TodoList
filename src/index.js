@@ -13,6 +13,8 @@ todayTab.classList.add('selected');
 todayTab.id = "today";
 todayTab.textContent = "Today";
 
+console.log(todayTab.classList);
+
 let weeklyTab = document.createElement("div");
 weeklyTab.classList.add('tabs');
 weeklyTab.id = "weekly";
@@ -31,5 +33,49 @@ completedTab.textContent = "Completed";
 tabDiv.append(todayTab);
 tabDiv.append(weeklyTab);
 tabDiv.append(projectTab);
+tabDiv.append(completedTab);
 
-contentDiv.appendChild(tabDiv);
+contentDiv.append(tabDiv);
+
+const tabs = Array.from(document.getElementsByClassName("tabs"));
+tabs.forEach(tab => {
+    if(tab.id === "today"){
+        tab.addEventListener('click', function(e){
+            deleteContent();
+            /* pageLoad(Food); */
+            tab.classList.add("selected");
+            
+        });
+    }else if(tab.id === "weekly"){
+        tab.addEventListener('click', function(e){
+            deleteContent();
+            /* menuLoad(); */
+            tab.classList.add("selected");
+            
+        });
+
+    }else if(tab.id === "projects"){
+        tab.addEventListener('click', function(e){
+            deleteContent();
+            /* menuLoad(); */
+            tab.classList.add("selected");
+            
+        });
+    
+    }else{
+        tab.addEventListener('click', function(e){
+            deleteContent();
+            /* contactLoad(); */
+            tab.classList.add("selected");
+        });
+    }  
+});
+
+function deleteContent(){
+    let contentDiv = document.getElementById('content');
+    /* contentDiv.removeChild(contentDiv.lastChild); */
+    let tabs = Array.from(document.getElementsByClassName("tabs"));
+    tabs.forEach(tab => {
+        tab.classList.remove("selected");
+    });
+}

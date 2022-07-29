@@ -28,12 +28,10 @@ div.tabDiv{
     flex-direction: row;
     height: 5em;
     width: 100%;
-    /* flex: 1; */
-
 }
 
-div.tabDiv > div{
-    background-color: rgb(177, 102, 51);
+.tabs{
+    background-color: rgb(212, 116, 52);
     flex: 1;
     border: darkblue solid 1px;
     display: flex;
@@ -41,8 +39,17 @@ div.tabDiv > div{
     justify-content: center;
 }
 
-div.tabDiv > div:hover{
+.tabs:hover{
     background-color: rgb(172, 37, 37);
     flex: 1.2;
+}
 
+.selected{
+    background-color: rgb(172, 37, 37);
+    flex: 1.2; 
+}
+
+.selected:hover{
+    background-color: rgb(161, 40, 40);
+    flex: 1.2;
 }
