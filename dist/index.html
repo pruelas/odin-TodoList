@@ -10,6 +10,36 @@
     <div id="content">
 
     </div>
+
+    <div class ="toDoItemForm" id="toDoItemForm" style="visibility:hidden">
+        <form class="addToDoItemForm" action="" id="addToDoItemForm">
+
+            <h1>Add New Todo Item</h1>
+             
+            <label for="title">Todo Item's Title:</label>
+            <input type="text" id="title" name = "title" required>
+
+            <label for="description">Todo Item's Description:</label>
+            <input type="text"  id ="description" name = "description">
+
+            <label for="dueDate">Todo Item's Due Date:</label>
+            <input type="text" id="dueDate" name = "dueDate" required>
+
+            <div class="priority">
+                <p>Todo Item's Priority?</p>
+                <input type="radio" id="priority" name = "priority" value = "low">
+                <label for="priority">Low</label>
+
+                <input type="radio" id="priority" name = "priority" value = "high" checked>
+                <label for="priority">high</label>
+            </div>
+
+            <button class="addToDoItem" type="submit"
+            >Add Todo Item</button>
+
+        </form>
+    </div>
+
 </body>
 <footer>
     <script src="main.js"></script>

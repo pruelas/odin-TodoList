@@ -18,7 +18,7 @@ const Project = (title) =>{
     const getToDoItems = () => _toDoItems;
 
     const addToDoItem = (toDoItem) => {
-        toDoItems.push(toDoItem);
+        _toDoItems.push(toDoItem);
     }
 
     const checkCompleted = () => {
@@ -88,6 +88,11 @@ const toDoItem = (title, description, dueDate, priority) => {
         changeDescription, changeDueDate, changePriority, changeCompleted};
 };
 
+function addToDoItemForm(projec){
+    var toDoItemForm = docment.getElementById("toDoItemForm");
+    toDoItemForm.setAttribute('data-projectIndex', project.getAttribute('data-index'));
+    toDoItemForm.style.visibilty = "visible";
+}
 
 //adding projects to DOM
 let projects = [];
@@ -97,6 +102,7 @@ function loadProjects(){
     var projectTitle;
     var projectDueDate;
     var projectToDoItemsDiv;
+    var addToDoItemButton;
     var completeButton;
     var removeButton;
 
@@ -106,6 +112,7 @@ function loadProjects(){
             projectTitle = document.createElement('div');
             projectDueDate = document.createElement('div');
             projectToDoItemsDiv = document.createElement('div');
+            addToDoItemButton = document.createElement('button');
             completeButton = document.createElement('button');
             removeButton = document.createElement('button');
 
@@ -115,6 +122,11 @@ function loadProjects(){
 
             projectToDoItemsDiv.className = "projectToDoItems"
             loadProjectToDoItems(projects[i].getToDoItems, projectToDoItemsDiv);
+            addToDoItemButton.className = "addToDoItemButton";
+            addToDoItemButton.textContent = "Add Todo Item";
+            addToDoItemButton.setAttribute('data-index', i);
+            addToDoItemButton.onclick = function() { addToDoItemForm(this);};
+            projectToDoItemsDiv.appendChild(addToDoItemButton);
 
             completeButton.className = "completeButton";
             removeButton.className = "removeButton";
@@ -125,6 +137,8 @@ function loadProjects(){
 /*             if(projects[i].getCompleted === true){
                 completeButton.textContent = "Yes";
             } */
+
+            completeButton.textContent = "Complete Placeholder";
 
             removeButton.textContent = "X";
             removeButton.setAttribute('data-index', i);
@@ -183,3 +197,13 @@ function loadProjectToDoItems(toDoItems, projectToDoItemsDiv){
         }
     }
 }
+
+const addToDoItem = document.getElementById("addToDoItemForm");
+addToDoItem.addEventListener('submit', function(e){
+    let toDoItemForm = document.getElementById("toDoItemForm").style.visibility = "hidden";
+    projects[toDoItemForm.getAttribute('data-projectIndex')].addToDoItem(new todoItem(addToDoItem.elements['title'].value, addToDoItem.elements['description'].value, addToDoItem.elements['dueDate'].value, addToDoItem.elements['priority'].value));
+    /* addBookToLibrary(); */
+    loadProjectToDoItems(projects[toDoItemForm.getAttribute('data-projectIndex')].getToDoItems(), projects[toDoItemForm.getAttribute('data-projectIndex')]);
+    e.preventDefault();
+    e.target.reset();
+})
