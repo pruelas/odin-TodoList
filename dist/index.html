@@ -9,6 +9,39 @@
 <body>
     <div id="content">
 
+<!--     <div>
+        <button id=addProjectItem> Add Project</button>
+    </div> -->
+
+    </div>
+
+    <div class ="projectItemForm" id="projectItemForm" style="visibility:hidden">
+        <form class="addProjectItemForm" action="" id="addProjectForm">
+
+            <h1>Add New Project</h1>
+             
+            <label for="title">Project's Title:</label>
+            <input type="text" id="title" name = "title" required>
+
+            <!-- <label for="description">Project's Description:</label>
+            <input type="text"  id ="description" name = "description"> -->
+
+            <label for="dueDate">Project's Due Date:</label>
+            <input type="text" id="dueDate" name = "dueDate" required>
+
+            <!-- <div class="priority">
+                <p>Project's Priority?</p>
+                <input type="radio" id="priority" name = "priority" value = "low">
+                <label for="priority">Low</label>
+
+                <input type="radio" id="priority" name = "priority" value = "high" checked>
+                <label for="priority">high</label>
+            </div> -->
+
+            <button class="addToDoItem" type="submit"
+            >Add Project</button>
+
+        </form>
     </div>
 
     <div class ="toDoItemForm" id="toDoItemForm" style="visibility:hidden">
@@ -39,6 +72,8 @@
 
         </form>
     </div>
+
+
 
 </body>
 <footer>

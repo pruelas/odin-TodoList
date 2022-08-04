@@ -7,45 +7,6 @@ import todoItem from "./todoItems";
 
 
 //changing todo priority
-
-
-const Project = (title) =>{
-    this._title = title;
-    this._toDoItems = [];
-    this._itemsCompleted = 0;
-    
-    const getTitle = () => _title;
-    const getToDoItems = () => _toDoItems;
-
-    const addToDoItem = (toDoItem) => {
-        _toDoItems.push(toDoItem);
-    }
-
-    const checkCompleted = () => {
-        if(_toDoItems.length == itemsCompleted){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-    const completeToDoItem = (index) => {
-        _toDoItems[index].changeCompleted();
-        if(_toDoItems[index].getCompleted == false){
-            _itemsCompleted -= 1;
-        }else{
-            _itemsCompleted += 1;
-        }
-    }
-
-    const deleteToDoItem = (index) => {
-        toDoItems.delete(index);
-        //reload DOM to reassign indeces
-    }
-
-    return {getTitle, getToDoItems, addToDoItem, checkCompleted, completeToDoItem, deleteToDoItem};
-};
-
 const toDoItem = (title, description, dueDate, priority) => {
     _title = title;
     _description = description;
@@ -88,6 +49,49 @@ const toDoItem = (title, description, dueDate, priority) => {
         changeDescription, changeDueDate, changePriority, changeCompleted};
 };
 
+const Project = (title, dueDate) =>{
+    this._title = title;
+    this._dueDate = dueDate
+    this._toDoItems = [];
+    this._itemsCompleted = 0;
+    
+    const getTitle = () => _title;
+    const getDueDate = () => _dueDate;
+    const getToDoItems = () => _toDoItems;
+
+    const changeDueDate = (dueDate) => {
+        _dueDate = dueDate;
+    }
+
+    const addToDoItem = (toDoItem) => {
+        _toDoItems.push(toDoItem);
+    }
+
+    const checkCompleted = () => {
+        if(_toDoItems.length == itemsCompleted){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    const completeToDoItem = (index) => {
+        _toDoItems[index].changeCompleted();
+        if(_toDoItems[index].getCompleted == false){
+            _itemsCompleted -= 1;
+        }else{
+            _itemsCompleted += 1;
+        }
+    }
+
+    const deleteToDoItem = (index) => {
+        toDoItems.delete(index);
+        //reload DOM to reassign indeces
+    }
+
+    return {getTitle, getDueDate, getToDoItems, changeDueDate, addToDoItem, checkCompleted, completeToDoItem, deleteToDoItem};
+};
+
 function addToDoItemForm(projec){
     var toDoItemForm = docment.getElementById("toDoItemForm");
     toDoItemForm.setAttribute('data-projectIndex', project.getAttribute('data-index'));
@@ -120,7 +124,8 @@ function loadProjects(){
             projectTitle.className = "title";
             projectDueDate.className = "dueDate";
 
-            projectToDoItemsDiv.className = "projectToDoItems"
+            projectToDoItemsDiv.className = "projectToDoItems";
+            projectToDoItemsDiv.setAttribute('data-projectIndex', i);
             loadProjectToDoItems(projects[i].getToDoItems, projectToDoItemsDiv);
             addToDoItemButton.className = "addToDoItemButton";
             addToDoItemButton.textContent = "Add Todo Item";
@@ -201,9 +206,19 @@ function loadProjectToDoItems(toDoItems, projectToDoItemsDiv){
 const addToDoItem = document.getElementById("addToDoItemForm");
 addToDoItem.addEventListener('submit', function(e){
     let toDoItemForm = document.getElementById("toDoItemForm").style.visibility = "hidden";
+    let projectToDoItemsDiv = document.querySelector('[data-projectIndex =' + toDoItemForm.getAttribute('data-projectIndex') + ']');
     projects[toDoItemForm.getAttribute('data-projectIndex')].addToDoItem(new todoItem(addToDoItem.elements['title'].value, addToDoItem.elements['description'].value, addToDoItem.elements['dueDate'].value, addToDoItem.elements['priority'].value));
     /* addBookToLibrary(); */
-    loadProjectToDoItems(projects[toDoItemForm.getAttribute('data-projectIndex')].getToDoItems(), projects[toDoItemForm.getAttribute('data-projectIndex')]);
+    loadProjectToDoItems(projects[toDoItemForm.getAttribute('data-projectIndex')].getToDoItems(), projectToDoItemsDiv);
+    e.preventDefault();
+    e.target.reset();
+})
+
+const addProject = document.getElementById("addProjectForm");
+addToDoItem.addEventListener('submit', function(e){
+    document.getElementById("projectForm").style.visibility = "hidden";
+    projects.push(new Project(addProject.elements['title'].value, addProject.elements['dueDate'].value));
+    loadProjects();
     e.preventDefault();
     e.target.reset();
 })

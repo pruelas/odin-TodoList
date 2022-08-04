@@ -7,21 +7,22 @@ let contentDiv = document.getElementById("content");
 let tabDiv = document.createElement("div");
 tabDiv.classList.add('tabDiv');
 
-let todayTab = document.createElement("div");
+/* let todayTab = document.createElement("div");
 todayTab.classList.add('tabs');
 todayTab.classList.add('selected');
 todayTab.id = "today";
-todayTab.textContent = "Today";
+todayTab.textContent = "Today"; */
 
-console.log(todayTab.classList);
+/* console.log(todayTab.classList); */
 
-let weeklyTab = document.createElement("div");
+/* let weeklyTab = document.createElement("div");
 weeklyTab.classList.add('tabs');
 weeklyTab.id = "weekly";
-weeklyTab.textContent = "Weekly";
+weeklyTab.textContent = "Weekly"; */
 
 let projectTab = document.createElement("div");
 projectTab.classList.add('tabs');
+projectTab.classList.add('selected');
 projectTab.id = "project";
 projectTab.textContent = "Projects";
 
@@ -30,12 +31,25 @@ completedTab.classList.add('tabs');
 completedTab.id = 'completed';
 completedTab.textContent = "Completed";
 
-tabDiv.append(todayTab);
-tabDiv.append(weeklyTab);
+/* tabDiv.append(todayTab);
+tabDiv.append(weeklyTab); */
 tabDiv.append(projectTab);
 tabDiv.append(completedTab);
 
 contentDiv.append(tabDiv);
+
+function addProjectItemForm(){
+    console.log("here");
+    var newBookForm = document.getElementById("projectItemForm");
+    newBookForm.style.visibility = "visible";
+}
+
+
+let addProjectButton = document.createElement("button");
+addProjectButton.classList.add("addProjectButton");
+addProjectButton.textContent = "Add Project";
+addProjectButton.onclick = function(){ addProjectItemForm();};
+contentDiv.append(addProjectButton);
 
 const tabs = Array.from(document.getElementsByClassName("tabs"));
 tabs.forEach(tab => {
@@ -68,8 +82,10 @@ tabs.forEach(tab => {
             /* contactLoad(); */
             tab.classList.add("selected");
         });
-    }  
+    } 
 });
+
+
 
 function deleteContent(){
     let contentDiv = document.getElementById('content');
