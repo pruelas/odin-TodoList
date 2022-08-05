@@ -1,13 +1,13 @@
 //creating new todos
 
-import todoItem from "./todoItems";
+/* import todoItem from "./todoItems"; */
 
 
 //setting todos as complete
 
 
 //changing todo priority
-const toDoItem = (title, description, dueDate, priority) => {
+export const toDoItem = (title, description, dueDate, priority) => {
     _title = title;
     _description = description;
     _dueDate = dueDate;
@@ -49,7 +49,7 @@ const toDoItem = (title, description, dueDate, priority) => {
         changeDescription, changeDueDate, changePriority, changeCompleted};
 };
 
-const Project = (title, dueDate) =>{
+export const Project = (title, dueDate) =>{
     this._title = title;
     this._dueDate = dueDate
     this._toDoItems = [];
@@ -92,25 +92,71 @@ const Project = (title, dueDate) =>{
     return {getTitle, getDueDate, getToDoItems, changeDueDate, addToDoItem, checkCompleted, completeToDoItem, deleteToDoItem};
 };
 
-function addToDoItemForm(projec){
-    var toDoItemForm = docment.getElementById("toDoItemForm");
+export function addToDoItemForm(project){
+    let toDoItemForm = docment.getElementById("toDoItemForm");
     toDoItemForm.setAttribute('data-projectIndex', project.getAttribute('data-index'));
     toDoItemForm.style.visibilty = "visible";
+};
+
+export let projects = [];
+
+export function loadProjectToDoItems(toDoItems, projectToDoItemsDiv){
+    let toDoItem;
+    let toDoItemsTitle;
+    let toDoItemsDueDate;
+    let toDoItemsDescription;
+    let completeButton;
+    let removeButton;
+
+    for(let i =0 ; i < toDoItems.length; i++){
+        if(typeof toDoItems[i] !== 'undefined'){
+            toDoItem = document.createElement('div');
+            toDoItemsTitle = document.createElement('div');
+            toDoItemsDueDate = document.createElement('div');
+            toDoItemsDescription = document.createElement('div');
+            completeButton = document.createElement('button');
+            removeButton = document.createElement('button');
+
+            toDoItem.className = "toDoItem";
+            toDoItemsTitle.className = "title";
+            toDoItemsDueDate.className = "dueDate";
+            toDoItemsDescription.className = "description";
+
+            completeButton.className = "completeButton";
+            removeButton.className = "removeButton";
+
+            toDoItemsTitle.textContent = toDoItems[i].getTitle;
+            toDoItemsDueDate.textContent = toDoItems[i].getDueDate;
+            toDoItemsDescription.textContent = toDoItems[i].getDescription;
+
+/*             if(projects[i].getCompleted === true){
+                completeButton.textContent = "Yes";
+            } */
+
+            removeButton.textContent = "X";
+            removeButton.setAttribute('data-index', i);
+            removeButton.onclick = function() { deleteToDoItem(this); };
+
+            toDoItem.append(toDoItemsTitle, toDoItemsDueDate, toDoItemsDescription, completeButton, removeButton);
+
+            projectToDoItemsDiv.appendChild(toDoItem);
+            
+        }
+    }
 }
 
 //adding projects to DOM
-let projects = [];
-function loadProjects(){
+export function loadProjects(place){
     let contentDiv = document.getElementById("content");
-    var projectDiv;
-    var projectTitle;
-    var projectDueDate;
-    var projectToDoItemsDiv;
-    var addToDoItemButton;
-    var completeButton;
-    var removeButton;
+    let projectDiv;
+    let projectTitle;
+    let projectDueDate;
+    let projectToDoItemsDiv;
+    let addToDoItemButton;
+    let completeButton;
+    let removeButton;
 
-    for(var i =0 ; i < projects.length; i++){
+    for(let i =0 ; i < projects.length; i++){
         if(typeof projects[i] !== 'undefined'){
             projectDiv = document.createElement('div');
             projectTitle = document.createElement('div');
@@ -153,58 +199,14 @@ function loadProjects(){
 
             contentDiv.appendChild(projectDiv);
             
-        };
-    }
-
-}
-
-function loadProjectToDoItems(toDoItems, projectToDoItemsDiv){
-    var toDoItem;
-    var toDoItemsTitle;
-    var toDoItemsDueDate;
-    var toDoItemsDescription;
-    var completeButton;
-    var removeButton;
-
-    for(var i =0 ; i < toDoItems.length; i++){
-        if(typeof toDoItems[i] !== 'undefined'){
-            toDoItem = document.createElement('div');
-            toDoItemsTitle = document.createElement('div');
-            toDoItemsDueDate = document.createElement('div');
-            toDoItemsDescription = document.createElement('div');
-            completeButton = document.createElement('button');
-            removeButton = document.createElement('button');
-
-            toDoItem.className = "toDoItem";
-            toDoItemsTitle.className = "title";
-            toDoItemsDueDate.className = "dueDate";
-            toDoItemsDescription.className = "description";
-
-            completeButton.className = "completeButton";
-            removeButton.className = "removeButton";
-
-            toDoItemsTitle.textContent = toDoItems[i].getTitle;
-            toDoItemsDueDate.textContent = toDoItems[i].getDueDate;
-            toDoItemsDescription.textContent = toDoItems[i].getDescription;
-
-/*             if(projects[i].getCompleted === true){
-                completeButton.textContent = "Yes";
-            } */
-
-            removeButton.textContent = "X";
-            removeButton.setAttribute('data-index', i);
-            removeButton.onclick = function() { deleteToDoItem(this); };
-
-            toDoItem.append(toDoItemsTitle, toDoItemsDueDate, toDoItemsDescription, completeButton, removeButton);
-
-            projectToDoItemsDiv.appendChild(toDoItem);
-            
         }
     }
-}
 
-const addToDoItem = document.getElementById("addToDoItemForm");
+};
+
+export const addToDoItem = document.getElementById("addToDoItemForm");
 addToDoItem.addEventListener('submit', function(e){
+    console.log("addToDoItem");
     let toDoItemForm = document.getElementById("toDoItemForm").style.visibility = "hidden";
     let projectToDoItemsDiv = document.querySelector('[data-projectIndex =' + toDoItemForm.getAttribute('data-projectIndex') + ']');
     projects[toDoItemForm.getAttribute('data-projectIndex')].addToDoItem(new todoItem(addToDoItem.elements['title'].value, addToDoItem.elements['description'].value, addToDoItem.elements['dueDate'].value, addToDoItem.elements['priority'].value));
@@ -214,7 +216,7 @@ addToDoItem.addEventListener('submit', function(e){
     e.target.reset();
 })
 
-const addProject = document.getElementById("addProjectForm");
+export const addProject = document.getElementById("addProjectForm");
 addToDoItem.addEventListener('submit', function(e){
     document.getElementById("projectForm").style.visibility = "hidden";
     projects.push(new Project(addProject.elements['title'].value, addProject.elements['dueDate'].value));
