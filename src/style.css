@@ -83,7 +83,7 @@ div.tabDiv{
     background-color: white;
 }
 
-.projectItemForm{
+.projectForm{
     position: absolute;
     border: rgb(221, 0, 0) solid 1px;
     display: flex;

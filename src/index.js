@@ -1,6 +1,5 @@
 import './meyerWeb.css';
 import './style.css';
-import './brainstorm.js';
 import {toDoItem, Project, addToDoItemForm, projects, loadProjects, loadProjectToDoItems, addToDoItem, addProject} from "./brainstorm.js"
 
 let contentDiv = document.getElementById("content");
@@ -42,7 +41,8 @@ contentDiv.append(tabDiv);
 
 function addProjectItemForm(){
     console.log("here");
-    var newBookForm = document.getElementById("projectItemForm");
+    console.log(projects);
+    var newBookForm = document.getElementById("projectForm");
     newBookForm.style.visibility = "visible";
 }
 
@@ -87,6 +87,19 @@ tabs.forEach(tab => {
     } 
 });
 
+/* let projects = [];
+
+const addProject = document.getElementById("addProjectForm");
+addProject.addEventListener('submit', function(e){
+    console.log("here2");
+    document.getElementById("projectForm").style.visibility = "hidden";
+    console.log(addProject.elements['title'].value, addProject.elements['dueDate'].value);
+    projects.push(new Project(addProject.elements['title'].value, addProject.elements['dueDate'].value));
+    console.log(projects);
+    loadProjects(projects);
+    e.preventDefault();
+    e.target.reset();
+}); */
 
 
 function deleteContent(){

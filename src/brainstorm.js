@@ -50,10 +50,10 @@ export const toDoItem = (title, description, dueDate, priority) => {
 };
 
 export const Project = (title, dueDate) =>{
-    this._title = title;
-    this._dueDate = dueDate
-    this._toDoItems = [];
-    this._itemsCompleted = 0;
+    let _title = title;
+    let _dueDate = dueDate
+    let _toDoItems = [];
+    let _itemsCompleted = 0;
     
     const getTitle = () => _title;
     const getDueDate = () => _dueDate;
@@ -68,7 +68,7 @@ export const Project = (title, dueDate) =>{
     }
 
     const checkCompleted = () => {
-        if(_toDoItems.length == itemsCompleted){
+        if(_toDoItems.length == _itemsCompleted){
             return true;
         }else{
             return false;
@@ -93,12 +93,16 @@ export const Project = (title, dueDate) =>{
 };
 
 export function addToDoItemForm(project){
-    let toDoItemForm = docment.getElementById("toDoItemForm");
+    console.log("hereTODOITEMADD");
+    
+    let toDoItemForm = document.getElementById("toDoItemForm");
+    toDoItemForm.style.visibility = "visible";
     toDoItemForm.setAttribute('data-projectIndex', project.getAttribute('data-index'));
-    toDoItemForm.style.visibilty = "visible";
+    console.log(project, project.getAttribute('data-index'), toDoItemForm.getAttribute('data-projectIndex'));
+    
 };
 
-export let projects = [];
+/* export let projects = []; */
 
 export function loadProjectToDoItems(toDoItems, projectToDoItemsDiv){
     let toDoItem;
@@ -125,9 +129,9 @@ export function loadProjectToDoItems(toDoItems, projectToDoItemsDiv){
             completeButton.className = "completeButton";
             removeButton.className = "removeButton";
 
-            toDoItemsTitle.textContent = toDoItems[i].getTitle;
-            toDoItemsDueDate.textContent = toDoItems[i].getDueDate;
-            toDoItemsDescription.textContent = toDoItems[i].getDescription;
+            toDoItemsTitle.textContent = toDoItems[i].getTitle();
+            toDoItemsDueDate.textContent = toDoItems[i].getDueDate();
+            toDoItemsDescription.textContent = toDoItems[i].getDescription();
 
 /*             if(projects[i].getCompleted === true){
                 completeButton.textContent = "Yes";
@@ -146,7 +150,7 @@ export function loadProjectToDoItems(toDoItems, projectToDoItemsDiv){
 }
 
 //adding projects to DOM
-export function loadProjects(place){
+export function loadProjects(projects){
     let contentDiv = document.getElementById("content");
     let projectDiv;
     let projectTitle;
@@ -172,7 +176,7 @@ export function loadProjects(place){
 
             projectToDoItemsDiv.className = "projectToDoItems";
             projectToDoItemsDiv.setAttribute('data-projectIndex', i);
-            loadProjectToDoItems(projects[i].getToDoItems, projectToDoItemsDiv);
+            loadProjectToDoItems(projects[i].getToDoItems(), projectToDoItemsDiv);
             addToDoItemButton.className = "addToDoItemButton";
             addToDoItemButton.textContent = "Add Todo Item";
             addToDoItemButton.setAttribute('data-index', i);
@@ -182,8 +186,8 @@ export function loadProjects(place){
             completeButton.className = "completeButton";
             removeButton.className = "removeButton";
 
-            projectTitle.textContent = projects[i].getTitle;
-            projectDueDate.textContent = projects[i].getDueDate;
+            projectTitle.textContent = projects[i].getTitle();
+            projectDueDate.textContent = projects[i].getDueDate();
 
 /*             if(projects[i].getCompleted === true){
                 completeButton.textContent = "Yes";
@@ -204,6 +208,7 @@ export function loadProjects(place){
 
 };
 
+export let projects = [];
 export const addToDoItem = document.getElementById("addToDoItemForm");
 addToDoItem.addEventListener('submit', function(e){
     console.log("addToDoItem");
@@ -213,14 +218,15 @@ addToDoItem.addEventListener('submit', function(e){
     /* addBookToLibrary(); */
     loadProjectToDoItems(projects[toDoItemForm.getAttribute('data-projectIndex')].getToDoItems(), projectToDoItemsDiv);
     e.preventDefault();
-    e.target.reset();
+    /* e.target.reset(); */
 })
 
 export const addProject = document.getElementById("addProjectForm");
-addToDoItem.addEventListener('submit', function(e){
+addProject.addEventListener('submit', function(e){
+    console.log("here2");
     document.getElementById("projectForm").style.visibility = "hidden";
     projects.push(new Project(addProject.elements['title'].value, addProject.elements['dueDate'].value));
-    loadProjects();
+    loadProjects(projects);
     e.preventDefault();
-    e.target.reset();
-})
+    /* e.target.reset(); */
+});
