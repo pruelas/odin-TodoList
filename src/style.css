@@ -22,6 +22,7 @@ div#content{
     display: flex;
     flex-direction: column;
     position: relative;
+    align-items: center;
 }
 
 .addProjectButton{
@@ -73,6 +74,12 @@ div.tabDiv{
     flex: 1.2;
 }
 
+.addProjectForm{
+    background-color: floralwhite;
+    width: 90%;
+    padding: 2em;
+}
+
 .toDoItemForm{
     position: absolute;
     border: rgb(221, 0, 0) solid 1px;
@@ -91,4 +98,12 @@ div.tabDiv{
     justify-content: center;
     top: 15vh;
     background-color: white;
+}
+
+.project{
+    width: 90%;
+    padding: 1em;
+    background-color: floralwhite;
+    display: flex;
+    flex-direction: row;
 }

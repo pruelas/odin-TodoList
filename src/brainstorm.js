@@ -8,11 +8,11 @@
 
 //changing todo priority
 export const toDoItem = (title, description, dueDate, priority) => {
-    _title = title;
-    _description = description;
-    _dueDate = dueDate;
-    _priority = priority;
-    _completed = false;
+    let _title = title;
+    let _description = description;
+    let _dueDate = dueDate;
+    let _priority = priority;
+    let _completed = false;
     
 
     const getTitle = () => _title;
@@ -98,6 +98,7 @@ export function addToDoItemForm(project){
     let toDoItemForm = document.getElementById("toDoItemForm");
     toDoItemForm.style.visibility = "visible";
     toDoItemForm.setAttribute('data-projectIndex', project.getAttribute('data-index'));
+    console.log(document.querySelector("[data-projectIndex = '" + toDoItemForm.getAttribute('data-projectIndex') + "']"));
     console.log(project, project.getAttribute('data-index'), toDoItemForm.getAttribute('data-projectIndex'));
     
 };
@@ -212,9 +213,10 @@ export let projects = [];
 export const addToDoItem = document.getElementById("addToDoItemForm");
 addToDoItem.addEventListener('submit', function(e){
     console.log("addToDoItem");
-    let toDoItemForm = document.getElementById("toDoItemForm").style.visibility = "hidden";
-    let projectToDoItemsDiv = document.querySelector('[data-projectIndex =' + toDoItemForm.getAttribute('data-projectIndex') + ']');
-    projects[toDoItemForm.getAttribute('data-projectIndex')].addToDoItem(new todoItem(addToDoItem.elements['title'].value, addToDoItem.elements['description'].value, addToDoItem.elements['dueDate'].value, addToDoItem.elements['priority'].value));
+    let toDoItemForm = document.getElementById("toDoItemForm");
+    toDoItemForm.style.visibility = "hidden";
+    let projectToDoItemsDiv = document.querySelector("[data-projectIndex = '" + toDoItemForm.getAttribute('data-projectIndex') + "']");
+    projects[toDoItemForm.getAttribute('data-projectIndex')].addToDoItem(new toDoItem(addToDoItem.elements['title'].value, addToDoItem.elements['description'].value, addToDoItem.elements['dueDate'].value, addToDoItem.elements['priority'].value));
     /* addBookToLibrary(); */
     loadProjectToDoItems(projects[toDoItemForm.getAttribute('data-projectIndex')].getToDoItems(), projectToDoItemsDiv);
     e.preventDefault();
