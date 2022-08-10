@@ -69,7 +69,6 @@ tabs.forEach(tab => {
             tab.classList.add("selected");
             
         });
-
     }else if(tab.id === "projects"){
         tab.addEventListener('click', function(e){
             deleteContent();
@@ -77,7 +76,6 @@ tabs.forEach(tab => {
             tab.classList.add("selected");
             
         });
-    
     }else{
         tab.addEventListener('click', function(e){
             deleteContent();

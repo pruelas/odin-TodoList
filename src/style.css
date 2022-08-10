@@ -100,10 +100,32 @@ div.tabDiv{
     background-color: white;
 }
 
+.projectInfo{
+    display: flex;
+    flex-direction: row;
+    border: gold solid 1px;
+    width: 100%;
+}
+
+.projectToDoItems{
+    border: fuchsia solid 1px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
 .project{
     width: 90%;
     padding: 1em;
     background-color: floralwhite;
     display: flex;
+    flex-direction: column;
+    border: forestgreen solid 1px;
+}
+
+.toDoItem{
+    display: flex;
     flex-direction: row;
+    border: rgb(105, 233, 255) solid 1px;
+    background-color: rgba(205, 92, 92, 0.575);
 }

@@ -153,6 +153,7 @@ export function loadProjectToDoItems(toDoItems, projectToDoItemsDiv){
 //adding projects to DOM
 export function loadProjects(projects){
     let contentDiv = document.getElementById("content");
+    let projectInfo;
     let projectDiv;
     let projectTitle;
     let projectDueDate;
@@ -163,6 +164,7 @@ export function loadProjects(projects){
 
     for(let i =0 ; i < projects.length; i++){
         if(typeof projects[i] !== 'undefined'){
+            projectInfo = document.createElement('div');
             projectDiv = document.createElement('div');
             projectTitle = document.createElement('div');
             projectDueDate = document.createElement('div');
@@ -171,6 +173,7 @@ export function loadProjects(projects){
             completeButton = document.createElement('button');
             removeButton = document.createElement('button');
 
+            projectInfo.className = "projectInfo";
             projectDiv.className = "project";
             projectTitle.className = "title";
             projectDueDate.className = "dueDate";
@@ -200,7 +203,9 @@ export function loadProjects(projects){
             removeButton.setAttribute('data-index', i);
             removeButton.onclick = function() { deleteProject(this); };
 
-            projectDiv.append(projectTitle, projectDueDate, projectToDoItemsDiv, completeButton, removeButton);
+            projectInfo.append(projectTitle, projectDueDate, completeButton, removeButton);
+
+            projectDiv.append(projectInfo, projectToDoItemsDiv);
 
             contentDiv.appendChild(projectDiv);
             
