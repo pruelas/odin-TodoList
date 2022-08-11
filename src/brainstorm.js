@@ -153,6 +153,9 @@ export function loadProjectToDoItems(toDoItems, projectToDoItemsDiv){
 //adding projects to DOM
 export function loadProjects(projects){
     let contentDiv = document.getElementById("content");
+    let projectLabels;
+    let titleLabel;
+    let dueDateLabel;
     let projectInfo;
     let projectDiv;
     let projectTitle;
@@ -164,6 +167,9 @@ export function loadProjects(projects){
 
     for(let i =0 ; i < projects.length; i++){
         if(typeof projects[i] !== 'undefined'){
+            projectLabels = document.createElement('div');
+            titleLabel = document.createElement('div');
+            dueDateLabel = document.createElement('div');
             projectInfo = document.createElement('div');
             projectDiv = document.createElement('div');
             projectTitle = document.createElement('div');
@@ -173,19 +179,27 @@ export function loadProjects(projects){
             completeButton = document.createElement('button');
             removeButton = document.createElement('button');
 
+            projectLabels.className = "projectLabels";
+            titleLabel.className = "titleLabel";
+            dueDateLabel.className = "dueDateLabel";
             projectInfo.className = "projectInfo";
             projectDiv.className = "project";
             projectTitle.className = "title";
             projectDueDate.className = "dueDate";
 
+            titleLabel.textContent = "Project: ";
+            dueDateLabel.textContent = "Due Date:";
+            projectLabels.append(titleLabel, dueDateLabel);
+
             projectToDoItemsDiv.className = "projectToDoItems";
             projectToDoItemsDiv.setAttribute('data-projectIndex', i);
             loadProjectToDoItems(projects[i].getToDoItems(), projectToDoItemsDiv);
+            
             addToDoItemButton.className = "addToDoItemButton";
             addToDoItemButton.textContent = "Add Todo Item";
             addToDoItemButton.setAttribute('data-index', i);
             addToDoItemButton.onclick = function() { addToDoItemForm(this);};
-            projectToDoItemsDiv.appendChild(addToDoItemButton);
+            /* projectToDoItemsDiv.appendChild(addToDoItemButton); */
 
             completeButton.className = "completeButton";
             removeButton.className = "removeButton";
@@ -203,9 +217,9 @@ export function loadProjects(projects){
             removeButton.setAttribute('data-index', i);
             removeButton.onclick = function() { deleteProject(this); };
 
-            projectInfo.append(projectTitle, projectDueDate, completeButton, removeButton);
+            projectInfo.append(projectTitle, projectDueDate, addToDoItemButton, removeButton);
 
-            projectDiv.append(projectInfo, projectToDoItemsDiv);
+            projectDiv.append(projectLabels, projectInfo, projectToDoItemsDiv, completeButton);
 
             contentDiv.appendChild(projectDiv);
             

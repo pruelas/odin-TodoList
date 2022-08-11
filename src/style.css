@@ -100,27 +100,80 @@ div.tabDiv{
     background-color: white;
 }
 
-.projectInfo{
-    display: flex;
-    flex-direction: row;
-    border: gold solid 1px;
-    width: 100%;
-}
-
-.projectToDoItems{
-    border: fuchsia solid 1px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
 .project{
     width: 90%;
     padding: 1em;
     background-color: floralwhite;
     display: flex;
     flex-direction: column;
-    border: forestgreen solid 1px;
+    border: forestgreen solid 3px;
+    position: relative;
+}
+
+.projectLabels{
+    display: flex;
+    flex-direction: row;
+    border: orange solid 3px;
+}
+
+.projectInfo{
+    display: flex;
+    flex-direction: row;
+    border: rgb(0, 204, 255) solid 3px;
+    width: 100%;
+    align-items: center;
+    /* position: relative; */
+}
+
+.projectInfo > .title{
+    width: 60%;
+    border: lawngreen solid 1px;
+    justify-items: start;
+}
+
+.dueDate{
+
+}
+
+.projectInfo .addToDoItemButton{
+    margin-left: auto;
+
+}
+
+ .project > .completeButton{
+    margin-top: 1em;
+    padding: .5em;
+    margin-left: auto;
+    border: black solid 1px;
+    background-color: rgb(63, 138, 76);
+}
+
+.project > .completeButton:hover{
+    background-color: rgb(40, 87, 48);
+}
+
+.projectInfo > .removeButton{
+    /* display:none; */
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    border: black solid 1px;
+    color: red;
+    font-weight: bolder;
+    /* border: none; */
+    border-radius: 50%;
+    justify-content: center;
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    align-self: end;
+}
+
+.projectToDoItems{
+    border: fuchsia solid 1px;
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
 }
 
 .toDoItem{
