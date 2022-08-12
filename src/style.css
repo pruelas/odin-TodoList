@@ -116,6 +116,10 @@ div.tabDiv{
     border: orange solid 3px;
 }
 
+.titleLabel{
+    width: 50%;
+}
+
 .projectInfo{
     display: flex;
     flex-direction: row;
@@ -145,7 +149,7 @@ div.tabDiv{
     padding: .5em;
     margin-left: auto;
     border: black solid 1px;
-    background-color: rgb(63, 138, 76);
+    background-color: rgb(40, 138, 56);
 }
 
 .project > .completeButton:hover{
@@ -159,6 +163,8 @@ div.tabDiv{
     border: black solid 1px;
     color: red;
     font-weight: bolder;
+    font-size: 1.2em;
+    /* padding: .2em; */
     /* border: none; */
     border-radius: 50%;
     justify-content: center;
@@ -180,5 +186,51 @@ div.tabDiv{
     display: flex;
     flex-direction: row;
     border: rgb(105, 233, 255) solid 1px;
+    
+    position: relative;
+    margin-bottom: .5em;
+}
+
+.toDoItem:hover{
+    background-color: rgba(145, 67, 67, 0.575);
+}
+
+.toDoItemInfo{
+    display: flex;
+    flex-direction: row;
+    /* position: relative; */
+    width: 100%;
+    margin-left: auto;
     background-color: rgba(205, 92, 92, 0.575);
+    
+}
+
+.toDoItem > .removeButton{
+    visibility: hidden;
+    align-items: center;
+    /* position: absolute; */
+    /* left: -2em; */
+    padding: 0 .3em;
+    margin-right: .4em;
+    background-color: rgb(255, 255, 255);
+    border: black solid 1px;
+    color: red;
+    font-weight: bolder;
+    border-radius: 50%;
+}
+
+.toDoItem:hover > .removeButton{
+    visibility: visible;
+    box-shadow: 3px 3px 1px 1px rgba(126, 126, 126, 0.671);
+}
+
+.toDoItemInfo > .completeButton{
+    margin-left: auto;
+    border: black solid 1px;
+    background-color: rgb(40, 138, 56);
+    color: white;
+}
+
+.toDoItemInfo > .completeButton:hover{
+    background-color: rgb(40, 87, 48);
 }

@@ -107,42 +107,49 @@ export function addToDoItemForm(project){
 
 export function loadProjectToDoItems(toDoItems, projectToDoItemsDiv){
     let toDoItem;
-    let toDoItemsTitle;
-    let toDoItemsDueDate;
-    let toDoItemsDescription;
+    let toDoItemInfo;
+    let toDoItemTitle;
+    let toDoItemDueDate;
+    let toDoItemDescription;
     let completeButton;
     let removeButton;
 
     for(let i =0 ; i < toDoItems.length; i++){
         if(typeof toDoItems[i] !== 'undefined'){
             toDoItem = document.createElement('div');
-            toDoItemsTitle = document.createElement('div');
-            toDoItemsDueDate = document.createElement('div');
-            toDoItemsDescription = document.createElement('div');
+            toDoItemInfo = document.createElement('div');
+            toDoItemTitle = document.createElement('div');
+            toDoItemDueDate = document.createElement('div');
+            toDoItemDescription = document.createElement('div');
             completeButton = document.createElement('button');
             removeButton = document.createElement('button');
 
             toDoItem.className = "toDoItem";
-            toDoItemsTitle.className = "title";
-            toDoItemsDueDate.className = "dueDate";
-            toDoItemsDescription.className = "description";
+            toDoItemInfo.className = "toDoItemInfo";
+            toDoItemTitle.className = "title";
+            toDoItemDueDate.className = "dueDate";
+            toDoItemDescription.className = "description";
 
             completeButton.className = "completeButton";
             removeButton.className = "removeButton";
 
-            toDoItemsTitle.textContent = toDoItems[i].getTitle();
-            toDoItemsDueDate.textContent = toDoItems[i].getDueDate();
-            toDoItemsDescription.textContent = toDoItems[i].getDescription();
+            toDoItemTitle.textContent = toDoItems[i].getTitle();
+            toDoItemDueDate.textContent = toDoItems[i].getDueDate();
+            toDoItemDescription.textContent = toDoItems[i].getDescription();
 
 /*             if(projects[i].getCompleted === true){
                 completeButton.textContent = "Yes";
             } */
 
+            completeButton.textContent = "Complete Placeholder";
+
             removeButton.textContent = "X";
             removeButton.setAttribute('data-index', i);
             removeButton.onclick = function() { deleteToDoItem(this); };
 
-            toDoItem.append(toDoItemsTitle, toDoItemsDueDate, toDoItemsDescription, completeButton, removeButton);
+            toDoItemInfo.append(toDoItemTitle, toDoItemDueDate, toDoItemDescription, completeButton);
+
+            toDoItem.append(removeButton, toDoItemInfo);
 
             projectToDoItemsDiv.appendChild(toDoItem);
             
