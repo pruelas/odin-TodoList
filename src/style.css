@@ -74,10 +74,40 @@ div.tabDiv{
     flex: 1.2;
 }
 
+.projectForm{
+    position: absolute;
+    border: rgb(221, 0, 0) solid 1px;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    top: 15vh;
+    background-color: white;
+
+}
+
 .addProjectForm{
     background-color: floralwhite;
     width: 90%;
     padding: 2em;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-items: center;
+    padding: 4em;
+}
+
+.addProjectForm> h1{
+    font-size: 1.5em;
+    font-weight: bolder;
+}
+
+.addProjectForm > label{
+    margin-top: .8em;
+}
+
+.addProjectForm > button{
+    margin-top: .8em;
+    padding: 1em;
 }
 
 .toDoItemForm{
@@ -90,14 +120,29 @@ div.tabDiv{
     background-color: white;
 }
 
-.projectForm{
-    position: absolute;
-    border: rgb(221, 0, 0) solid 1px;
+.addToDoItemForm{
+    background-color: floralwhite;
+    width: 90%;
+    padding: 2em;
     display: flex;
-    align-self: center;
-    justify-content: center;
-    top: 15vh;
-    background-color: white;
+    flex-direction: column;
+    align-content: center;
+    justify-items: center;
+    padding: 4em;
+}
+
+.addToDoItemForm> h1{
+    font-size: 1.5em;
+    font-weight: bolder;
+}
+
+.addToDoItemForm > label{
+    margin-top: .8em;
+}
+
+.addToDoItemForm > button{
+    margin-top: .8em;
+    padding: 1em;
 }
 
 .project{
@@ -156,8 +201,8 @@ div.tabDiv{
     background-color: rgb(40, 87, 48);
 }
 
-.projectInfo > .removeButton{
-    /* display:none; */
+.project > .removeButton{
+    visibility: hidden;
     position: absolute;
     background-color: rgb(255, 255, 255);
     border: black solid 1px;
@@ -172,6 +217,15 @@ div.tabDiv{
     top: 0%;
     right: 0%;
     align-self: end;
+}
+
+.project:hover > .removeButton{
+    visibility: visible;
+    box-shadow: 3px 3px 1px 1px rgba(126, 126, 126, 0.671);
+}
+
+.project > .removeButton:hover{
+    background-color: thistle;
 }
 
 .projectToDoItems{
@@ -222,6 +276,10 @@ div.tabDiv{
 .toDoItem:hover > .removeButton{
     visibility: visible;
     box-shadow: 3px 3px 1px 1px rgba(126, 126, 126, 0.671);
+}
+
+.toDoItem > .removeButton:hover{
+    background-color: thistle;
 }
 
 .toDoItemInfo > .completeButton{

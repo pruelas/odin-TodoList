@@ -224,9 +224,9 @@ export function loadProjects(projects){
             removeButton.setAttribute('data-index', i);
             removeButton.onclick = function() { deleteProject(this); };
 
-            projectInfo.append(projectTitle, projectDueDate, addToDoItemButton, removeButton);
+            projectInfo.append(projectTitle, projectDueDate, addToDoItemButton);
 
-            projectDiv.append(projectLabels, projectInfo, projectToDoItemsDiv, completeButton);
+            projectDiv.append(projectLabels, projectInfo, projectToDoItemsDiv, completeButton, removeButton);
 
             contentDiv.appendChild(projectDiv);
             

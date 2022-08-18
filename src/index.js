@@ -108,3 +108,17 @@ function deleteContent(){
         tab.classList.remove("selected");
     });
 }
+
+document.body.addEventListener('click', function(e){
+    var addProjectForm = document.getElementById("projectForm");
+    if( (e.target.className !== "addProjectForm" && e.target.className !=="addProject" && e.target instanceof HTMLDivElement) && addProjectForm.style.visibility !=="hidden"){
+        addProjectForm.style.visibility = 'hidden';
+    }
+})
+
+document.body.addEventListener('click', function(e){
+    var addToDoItemForm = document.getElementById("toDoItemForm");
+    if( (e.target.className !== "addToDoItemForm" && e.target.className !=="priority" && e.target instanceof HTMLDivElement) && addToDoItemForm.style.visibility !=="hidden"){
+        addToDoItemForm.style.visibility = 'hidden';
+    }
+})
