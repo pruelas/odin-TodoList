@@ -36,8 +36,7 @@ completedTab.textContent = "Completed";
 tabDiv.append(weeklyTab); */
 tabDiv.append(projectTab);
 tabDiv.append(completedTab);
-
-contentDiv.append(tabDiv);
+contentDiv.prepend(tabDiv);
 
 function addProjectItemForm(){
     console.log("here");

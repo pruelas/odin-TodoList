@@ -145,7 +145,7 @@ export function loadProjectToDoItems(toDoItems, projectToDoItemsDiv){
 
             removeButton.textContent = "X";
             removeButton.setAttribute('data-index', i);
-            removeButton.onclick = function() { deleteToDoItem(this); };
+            removeButton.onclick = function() { deleteToDoItem(this, projectToDoItemsDiv.getAttribute('data-projectIndex')); };
 
             toDoItemInfo.append(toDoItemTitle, toDoItemDueDate, toDoItemDescription, completeButton);
 
@@ -159,7 +159,8 @@ export function loadProjectToDoItems(toDoItems, projectToDoItemsDiv){
 
 //adding projects to DOM
 export function loadProjects(projects){
-    let contentDiv = document.getElementById("content");
+    let contentDiv = document.getElementById("projectContent");
+    contentDiv.innerHTML = "";
     let projectLabels;
     let titleLabel;
     let dueDateLabel;
@@ -258,3 +259,20 @@ addProject.addEventListener('submit', function(e){
     e.preventDefault();
     /* e.target.reset(); */
 });
+
+export function deleteProject(project){
+    console.log(project.getAttribute('data-index'));
+    delete projects[project.getAttribute("data-index")];
+    console.log('deleting project');
+    let contentDiv = document.getElementById("projectContent");
+    loadProjects(projects);
+    
+}
+
+export function deleteToDoItem(toDoItem, projectIndex){
+    projects[projectIndex].deleteToDoItem(toDoItem.getAttribute("data-index"));
+    console.log('deleting project');
+    let contentDiv = document.getElementById("projectContent");
+    loadProjects(projects);
+    
+}
