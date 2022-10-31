@@ -2,15 +2,48 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
-    <div id="content">
-        <div id="projectContent">
+
+    <div class="header">
+        TodoList
+    </div>
+
+    <div class="sidebar">
+
+        <div class="navigation">
+            <div class="tabs selected" id = "home">
+                <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z" />
+                </svg>
+                <div>Home</div>
+            </div>
+            <div class = "tabs" id = "completed">
+                <svg id="Layer_1" height="22px" viewBox="0 0 24 24" width="22px" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1"><path d="m4 6a2.982 2.982 0 0 1 -2.122-.879l-1.544-1.374a1 1 0 0 1 1.332-1.494l1.585 1.414a1 1 0 0 0 1.456.04l3.604-3.431a1 1 0 0 1 1.378 1.448l-3.589 3.414a2.964 2.964 0 0 1 -2.1.862zm20-2a1 1 0 0 0 -1-1h-10a1 1 0 0 0 0 2h10a1 1 0 0 0 1-1zm-17.9 9.138 3.589-3.414a1 1 0 1 0 -1.378-1.448l-3.6 3.431a1.023 1.023 0 0 1 -1.414 0l-1.59-1.585a1 1 0 0 0 -1.414 1.414l1.585 1.585a3 3 0 0 0 4.226.017zm17.9-1.138a1 1 0 0 0 -1-1h-10a1 1 0 0 0 0 2h10a1 1 0 0 0 1-1zm-17.9 9.138 3.585-3.414a1 1 0 1 0 -1.378-1.448l-3.6 3.431a1 1 0 0 1 -1.456-.04l-1.585-1.414a1 1 0 0 0 -1.332 1.494l1.544 1.374a3 3 0 0 0 4.226.017zm17.9-1.138a1 1 0 0 0 -1-1h-10a1 1 0 0 0 0 2h10a1 1 0 0 0 1-1z"/></svg>
+
+                <div>Completed</div>
+            </div>
+        </div>
+
+        <div class="projectSidebar">
+            Projects
+        </div>
+
+        <div id = "projects">
 
         </div>
+
+        <button id = "addProjectButton">
+            Add Project
+        </button>
+
+    </div>
+
+
+    <div id="content">
 <!--     <div>
         <button id=addProjectItem> Add Project</button>
     </div> -->
@@ -40,8 +73,8 @@
                 <label for="priority">high</label>
             </div> -->
 
-            <button class="addProject" type="submit"
-            >Add Project</button>
+            <button class="addProject" type="submit">
+                Add Project</button>
 
         </form>
     </div>
@@ -79,6 +112,6 @@
 
 </body>
 <footer>
-    <script src="main.js"></script>
+    <script src="main.js"></script> 
 </footer>
 </html>

@@ -2,24 +2,24 @@
 
 /* import todoItem from "./todoItems"; */
 
-
 //setting todos as complete
 
 
 //changing todo priority
-export const toDoItem = (title, description, dueDate, priority) => {
+export const toDoItem = (title, description, dueDate, priority, project) => {
     let _title = title;
     let _description = description;
     let _dueDate = dueDate;
     let _priority = priority;
     let _completed = false;
-    
+    let _project = project
 
     const getTitle = () => _title;
     const getDescription = () => _description;
     const getDueDate = () => _dueDate;
     const getPriority = () => _priority;
     const getCompleted = () => _completed;
+    const getProject = () => _project;
 
     const changeTitle = (title) => {
         _title = title;
@@ -45,13 +45,17 @@ export const toDoItem = (title, description, dueDate, priority) => {
         }
     }
 
-    return {getTitle, getDescription, getDueDate, getPriority, getCompleted, changeTitle, 
-        changeDescription, changeDueDate, changePriority, changeCompleted};
+    const changeProject = (project) => {
+        _project = project
+    }
+
+    return {getTitle, getDescription, getDueDate, getPriority, getCompleted, getProject, changeTitle, 
+        changeDescription, changeDueDate, changePriority, changeCompleted, changeProject};
 };
 
 export const Project = (title, dueDate) =>{
     let _title = title;
-    let _dueDate = dueDate
+    let _dueDate = dueDate;
     let _toDoItems = [];
     let _itemsCompleted = 0;
     
@@ -157,6 +161,107 @@ export function loadProjectToDoItems(toDoItems, projectToDoItemsDiv){
     }
 }
 
+export function projectLoad(project){
+    deleteContent();
+    let content = document.getElementById("content");
+    let contentWrapper = document.createElement("div");
+    let projectInfo = document.createElement("div");
+    let projectTitle = document.createElement("div");
+    let projectDueDate = document.createElement("div");
+    let addTodoItem = document.createElement("button");
+    let projectToDoItems = document.createElement("div");
+
+    contentWrapper.className = "contentWrapper";
+    projectInfo.className = "projectInfo";
+    projectDueDate.className = "projectDueDate";
+    addTodoItem.className = "addToDoItem";
+    projectTitle.className = "projectTitle";
+    projectToDoItems.className = "projectToDoItems";
+    project.classList.add("selected");
+
+    let index = project.getAttribute('data-index');
+
+    projectTitle.textContent =  projects[index].getTitle();
+    projectDueDate.textContent = projects[index].getDueDate();
+    //content.innerHTML = "Project content here";
+
+    addTodoItem.textContent = "Add Todo Item";
+    addTodoItem.setAttribute('data-index', index);
+    addTodoItem.onclick = function() { addToDoItemForm(this);};
+
+    projectToDoItems.innerHTML = "ToDo Items";
+
+    projectInfo.append(projectTitle, projectDueDate, addTodoItem);
+    contentWrapper.append(projectInfo, projectToDoItems);
+    content.append(contentWrapper);
+}
+
+export function homeLoad(){
+    deleteContent();
+    let content = document.getElementById("content");
+    content.innerHTML = "Home Load";
+};
+
+export function completedLoad(){
+    deleteContent();
+    let content = document.getElementById("content");
+    content.innerHTML = "Completed Load";
+};
+
+export function loadProjectSidebar(){
+    let projectSidebar = document.getElementById("projects");
+    projectSidebar.innerHTML = ""; //remove any previous existing projects
+    let projectWrapper;
+    let projectIcon;
+    let projectTitle;
+    let removeButton;
+
+    for(let i = 0; i < projects.length; i++){
+        /*
+        console.log(i + "  " + typeof projects[i] );
+        let currProject = typeof(projects[i]);
+        console.log(currProject + " ? "+ (currProject !== "undefined"));
+        console.log("after asssignment " + typeof(currProject));*/
+        if(typeof projects[i] !== "undefined"){
+            console.log("in if statement");
+            projectWrapper = document.createElement('div');
+            projectIcon = document.createElement('div');
+            projectTitle = document.createElement('div');
+            removeButton = document.createElement('button');
+            
+            projectWrapper.className = "projectWrapper tabs";
+            //project
+            projectIcon.className = "projectIcon";
+            projectTitle.className = "title";
+            removeButton.className = "removeProjectButton";
+
+            //add eventListener to display project contents when clicked
+            projectWrapper.setAttribute('data-index', i);
+            projectWrapper.onclick = function() { projectLoad(this);};
+            // projectWrapper.addEventListener('click', function(e){
+            //     deleteContent();
+            //     projectLoad();d
+            //     projectWrapper.classList.add("selected");
+
+            // });
+
+            projectIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="24px" height="24px"><path d="M17.5,24H6.5c-2.481,0-4.5-2.019-4.5-4.5V4.5C2,2.019,4.019,0,6.5,0h11c2.481,0,4.5,2.019,4.5,4.5v15c0,2.481-2.019,4.5-4.5,4.5ZM6.5,1c-1.93,0-3.5,1.57-3.5,3.5v15c0,1.93,1.57,3.5,3.5,3.5h11c1.93,0,3.5-1.57,3.5-3.5V4.5c0-1.93-1.57-3.5-3.5-3.5H6.5Zm11.5,4.5c0-.276-.224-.5-.5-.5h-6c-.276,0-.5,.224-.5,.5s.224,.5,.5,.5h6c.276,0,.5-.224,.5-.5Zm0,6c0-.276-.224-.5-.5-.5h-6c-.276,0-.5,.224-.5,.5s.224,.5,.5,.5h6c.276,0,.5-.224,.5-.5Zm0,6c0-.276-.224-.5-.5-.5h-6c-.276,0-.5,.224-.5,.5s.224,.5,.5,.5h6c.276,0,.5-.224,.5-.5ZM8.5,7h-2c-.276,0-.5-.224-.5-.5v-2c0-.276,.224-.5,.5-.5h2c.276,0,.5,.224,.5,.5v2c0,.276-.224,.5-.5,.5Zm-1.5-1h1v-1h-1v1Zm1.5,7h-2c-.276,0-.5-.224-.5-.5v-2c0-.276,.224-.5,.5-.5h2c.276,0,.5,.224,.5,.5v2c0,.276-.224,.5-.5,.5Zm-1.5-1h1v-1h-1v1Zm1.5,7h-2c-.276,0-.5-.224-.5-.5v-2c0-.276,.224-.5,.5-.5h2c.276,0,.5,.224,.5,.5v2c0,.276-.224,.5-.5,.5Zm-1.5-1h1v-1h-1v1Z"/></svg>';
+            projectTitle.textContent = projects[i].getTitle();
+            removeButton.textContent = "X";
+
+            removeButton.setAttribute('data-index', i);
+            removeButton.onclick = function(){deleteProject(this); };
+
+            
+
+            projectWrapper.append(projectIcon, projectTitle, removeButton);
+            projectSidebar.appendChild(projectWrapper);
+
+        }
+    }
+
+};
+
 //adding projects to DOM
 export function loadProjects(projects){
     let contentDiv = document.getElementById("projectContent");
@@ -173,8 +278,8 @@ export function loadProjects(projects){
     let completeButton;
     let removeButton;
 
-    for(let i =0 ; i < projects.length; i++){
-        if(typeof projects[i] !== 'undefined'){
+    for(let i = 0; i < projects.length; i++){
+        if(typeof projects[i] !== undefined){
             projectLabels = document.createElement('div');
             titleLabel = document.createElement('div');
             dueDateLabel = document.createElement('div');
@@ -255,7 +360,8 @@ addProject.addEventListener('submit', function(e){
     console.log("here2");
     document.getElementById("projectForm").style.visibility = "hidden";
     projects.push(new Project(addProject.elements['title'].value, addProject.elements['dueDate'].value));
-    loadProjects(projects);
+    console.log(addProject.elements['dueDate'].value);
+    loadProjectSidebar(projects);
     e.preventDefault();
     /* e.target.reset(); */
 });
@@ -264,15 +370,22 @@ export function deleteProject(project){
     console.log(project.getAttribute('data-index'));
     delete projects[project.getAttribute("data-index")];
     console.log('deleting project');
-    let contentDiv = document.getElementById("projectContent");
-    loadProjects(projects);
+    loadProjectSidebar();
     
 }
 
 export function deleteToDoItem(toDoItem, projectIndex){
     projects[projectIndex].deleteToDoItem(toDoItem.getAttribute("data-index"));
-    console.log('deleting project');
-    let contentDiv = document.getElementById("projectContent");
-    loadProjects(projects);
+    console.log('deleting toDoItem');
+    loadProjects;
     
+}
+
+export function deleteContent(){
+    let contentDiv = document.getElementById('content');
+    contentDiv.innerHTML = "";
+    let tabs = Array.from(document.getElementsByClassName("tabs"));
+    tabs.forEach(tab => {
+        tab.classList.remove("selected");
+    });
 }

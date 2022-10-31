@@ -4,87 +4,265 @@ html{
 }
 
 body{
+    height: inherit;
+    width:inherit;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows:  min(100px, 200px) repeat(4, 1fr);
+    grid-template-areas: 
+    "header header"
+    "sidebar content"
+    "sidebar content"
+    "sidebar content"
+    "sidebar content";
+    /* border: solid black 2px; */
+    background-color: rgb(255, 255, 255);
+    
+}
+
+div.header{
+    grid-area: header;
+    background-image: linear-gradient(rgb(218, 218, 218), rgb(211, 211, 211));
+    /* border: solid black 1px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: bold;
+    border-bottom: solid black 2px;
+}
+
+
+div.sidebar{
+    grid-area: sidebar;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(218, 218, 218);
     height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+    /* border: solid rgb(185, 39, 39) 1px; */
     align-items: center;
-    justify-content: center;
+    overflow-x: visible;
+    border-right: solid black 2px;
 }
 
-div#content{
-    background-color: rgba(197, 182, 163, 0.822);
-    height: 95%;
-    width: 100%;
+.navigation{
+    margin-top: 1em;
+    display:grid;
+    gap: .7rem;
+    margin-bottom: 1em;
+    width: 90%;
+    font-size: 1.2rem;
+}
+
+.navigation > .tabs{
     display: flex;
-    /* align-items: center; */
-    /* justify-content: center; */
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    align-items: center;
+    padding: .5rem 0;
+    padding-left: .4rem;
+    border-radius: .2rem;
+    border: solid white 1px;
+    align-content: center;
+    /* text-align: center; */
 }
 
-div#projectContent{
-    background-color: rgba(197, 182, 163, 0.822);
-    height: 95%;
-    width: 100%;
-    display: flex;
-    /* align-items: center; */
-    /* justify-content: center; */
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    align-items: center;
+.tabs > div{
+    /* border: solid red 1px; */
+    align-self: center;
 }
 
-.addProjectButton{
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    padding: 2em;
-    width: 100%;
-    background-color: rgb(63, 138, 76);
-    border: none;
-    font-size: 1.1em;
-    
+#completed > div{
+    margin-left: .4rem;
 }
 
-.addProjectButton:hover{
-    background-color: rgb(40, 87, 48);
-}
-
-div.tabDiv{
-    background-color: rgb(38, 57, 92);
-    display: flex;
-    flex-direction: row;
-    height: 5em;
-    width: 100%;
-    
-}
-
-.tabs{
-    background-color: rgb(212, 116, 52);
-    flex: 1;
-    border: darkblue solid 1px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.tabs:hover{
-    background-color: rgb(172, 37, 37);
-    flex: 1.2;
+.navigation div:hover{
+    background-image: linear-gradient(rgb(150, 94, 202), rgb(97, 63, 129));
 }
 
 .selected{
-    background-color: rgb(172, 37, 37);
-    flex: 1.2; 
+    background-image: linear-gradient(rgb(150, 94, 202), rgb(97, 63, 129));
 }
 
-.selected:hover{
-    background-color: rgb(161, 40, 40);
-    flex: 1.2;
+.projectSidebar{
+    font-size:1.5rem;
+    font-weight: bold;
+    width: 90%;
+    padding-left: .2rem;
+    border-bottom:solid black 2px;
+    
+}
+
+#projects{
+    /* position: relative; */
+    display: flex;
+    flex-direction: column;
+    /* border: solid red 1px; */
+    width: 95%;
+    max-height: 90%;
+    /* gap: .7rem; */
+    overflow-y: scroll;
+    /* overflow-x: visible; */
+    margin-bottom: .1rem;
+    
+}
+
+.projectWrapper{
+    position: relative;
+    display:flex;
+    /* height: fit-content; */
+    /* flex-direction: row; */
+    /* width: 0; */
+    /* min-width: 100%; */
+    /* background-color: rgb(120, 78, 136); */
+    /* border: solid rgb(255, 255, 255) 1px; */
+    /* justify-content: space-between; */
+    /* overflow: hidden; */
+    /* background-image: linear-gradient(rgb(119, 75, 160), rgb(97, 63, 129)); */
+    padding: .5rem 0rem;
+    padding-left: .2rem;
+    margin-top: .1rem;
+    border-radius: .4rem;
+    align-items: center;
+    border-bottom: solid white 1px;
+    /* box-shadow: 1px 4px 1px 1px rgb(0, 0, 0); */
+}
+
+.projectWrapper:hover{
+    background-image: linear-gradient(rgb(150, 94, 202), rgb(97, 63, 129));
+}
+
+.title{
+    /* position: absolute; */
+    align-self: center;
+    width: 80%;
+    /* height: 100%; */
+    /* border: solid white 1px; */
+    /* padding: .5rem 0rem;
+    padding-left: .4rem;
+    margin-top: .1rem; */
+    border-radius: .2rem;
+    /* overflow:hidden; */
+    text-overflow: ellipsis;
+    word-break: break-word;
+}
+
+.title:hover{
+    /* position: absolute; */
+    /* align-self: center; */
+    /* align-self: baseline; */
+    /* overflow: visible; */
+    /* width: fit-content; */
+    /* border: 1px solid #eee; */
+    /* box-shadow: 0rem .1rem .1rem 0rem black; */
+    /* padding:inherit; */
+    /* white-space: normal; */
+    /* bottom: 5%; */
+    /* word-break: break-word; */
+    /* z-index:5; */
+    /* background-color:rgb(158, 130, 165); */
+}
+
+.projectIcon > svg{
+    /* align-self: center; */
+    /* border: solid white 1px; */
+    /* justify-self: center; */
+    margin-right: .2rem;
+}
+
+.projectWrapper .removeProjectButton{
+    position: absolute;
+    display: none;
+    right: .1rem;
+    align-items: center;
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+    font-size: .8rem;
+    font-weight: bold;
+    text-align: center;
+	/* cursor: pointer; */
+	/* outline: inherit; */
+    /* margin-right: .4rem; */
+}
+.projectWrapper:hover > .removeProjectButton{
+    display:block;
+    background-color: white;
+    padding: .4rem;
+    border-radius: 50%;
+}
+
+.projectWrapper button{
+    /* position: absolute; */
+    /* align-self: flex-end; */
+}
+
+#addProjectButton{
+    margin: .5rem 0;
+    padding: 1rem;
+    width: 90%;
+    background-image: linear-gradient(rgb(80, 172, 80), rgb(51, 110, 51));
+}
+
+#addProjectButton:hover{
+    background-image: linear-gradient(rgb(51, 110, 51), rgb(51, 110, 51));
+
+}
+
+div#content{
+    grid-area: content;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    /* align-items: center; */
+    /* justify-content: center; */
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    /* border: solid green 2px; */
+    justify-content: center;
+    align-items: center;
+}
+
+.contentWrapper{
+    width: 100%;
+    height: 100%;
+    background-color: rgb(218, 218, 218);
+    border: solid red 2px;
+    justify-self: center;
+}
+
+.projectInfo{
+    display: flex;
+    border: solid green 2px;
+    border-bottom: solid black 2px;
+    margin-top: 3rem;
+    margin-left: 3rem;
+    width: 70%;
+}
+
+.projectTitle{
+    border: solid greenyellow 2px;
+    font-size: 4rem;
+
+}
+
+.projectDueDate{
+    border: solid limegreen 2px;
+    font-size: 3rem;
+}
+
+.projectToDoItems{
+    margin-top: .4rem;
+    border: solid blue 2px;
+    font-size: 2rem;
+}
+
+/* div#projectForm{
+    display: none;
+} */
+
+footer{
+    display: none;
 }
 
 .projectForm{
@@ -92,21 +270,21 @@ div.tabDiv{
     border: rgb(221, 0, 0) solid 1px;
     display: flex;
     align-self: center;
-    justify-content: center;
-    top: 15vh;
+    justify-self: center;
+    /* top: 15vh; */
     background-color: white;
+    /* z-index: 1; */
 
 }
 
 .addProjectForm{
     background-color: floralwhite;
     width: 90%;
-    padding: 2em;
+    padding: 4em;
     display: flex;
     flex-direction: column;
     align-content: center;
     justify-items: center;
-    padding: 4em;
 }
 
 .addProjectForm> h1{
@@ -123,185 +301,12 @@ div.tabDiv{
     padding: 1em;
 }
 
-.toDoItemForm{
+div#toDoItemForm{
     position: absolute;
     border: rgb(221, 0, 0) solid 1px;
     display: flex;
     align-self: center;
-    justify-content: center;
-    top: 15vh;
+    justify-self: center;
+    /* top: 15vh; */
     background-color: white;
-}
-
-.addToDoItemForm{
-    background-color: floralwhite;
-    width: 90%;
-    padding: 2em;
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    justify-items: center;
-    padding: 4em;
-}
-
-.addToDoItemForm> h1{
-    font-size: 1.5em;
-    font-weight: bolder;
-}
-
-.addToDoItemForm > label{
-    margin-top: .8em;
-}
-
-.addToDoItemForm > button{
-    margin-top: .8em;
-    padding: 1em;
-}
-
-.project{
-    width: 90%;
-    padding: 1em;
-    background-color: floralwhite;
-    display: flex;
-    flex-direction: column;
-    border: forestgreen solid 3px;
-    position: relative;
-}
-
-.projectLabels{
-    display: flex;
-    flex-direction: row;
-    border: orange solid 3px;
-}
-
-.titleLabel{
-    width: 50%;
-}
-
-.projectInfo{
-    display: flex;
-    flex-direction: row;
-    border: rgb(0, 204, 255) solid 3px;
-    width: 100%;
-    align-items: center;
-    /* position: relative; */
-}
-
-.projectInfo > .title{
-    width: 60%;
-    border: lawngreen solid 1px;
-    justify-items: start;
-}
-
-.dueDate{
-
-}
-
-.projectInfo .addToDoItemButton{
-    margin-left: auto;
-
-}
-
- .project > .completeButton{
-    margin-top: 1em;
-    padding: .5em;
-    margin-left: auto;
-    border: black solid 1px;
-    background-color: rgb(40, 138, 56);
-}
-
-.project > .completeButton:hover{
-    background-color: rgb(40, 87, 48);
-}
-
-.project > .removeButton{
-    visibility: hidden;
-    position: absolute;
-    background-color: rgb(255, 255, 255);
-    border: black solid 1px;
-    color: red;
-    font-weight: bolder;
-    font-size: 1.2em;
-    /* padding: .2em; */
-    /* border: none; */
-    border-radius: 50%;
-    justify-content: center;
-    position: absolute;
-    top: 0%;
-    right: 0%;
-    align-self: end;
-}
-
-.project:hover > .removeButton{
-    visibility: visible;
-    box-shadow: 3px 3px 1px 1px rgba(126, 126, 126, 0.671);
-}
-
-.project > .removeButton:hover{
-    background-color: thistle;
-}
-
-.projectToDoItems{
-    border: fuchsia solid 1px;
-    width: 95%;
-    display: flex;
-    flex-direction: column;
-    margin-left: auto;
-}
-
-.toDoItem{
-    display: flex;
-    flex-direction: row;
-    border: rgb(105, 233, 255) solid 1px;
-    
-    position: relative;
-    margin-bottom: .5em;
-}
-
-.toDoItem:hover{
-    background-color: rgba(145, 67, 67, 0.575);
-}
-
-.toDoItemInfo{
-    display: flex;
-    flex-direction: row;
-    /* position: relative; */
-    width: 100%;
-    margin-left: auto;
-    background-color: rgba(205, 92, 92, 0.575);
-    
-}
-
-.toDoItem > .removeButton{
-    visibility: hidden;
-    align-items: center;
-    /* position: absolute; */
-    /* left: -2em; */
-    padding: 0 .3em;
-    margin-right: .4em;
-    background-color: rgb(255, 255, 255);
-    border: black solid 1px;
-    color: red;
-    font-weight: bolder;
-    border-radius: 50%;
-}
-
-.toDoItem:hover > .removeButton{
-    visibility: visible;
-    box-shadow: 3px 3px 1px 1px rgba(126, 126, 126, 0.671);
-}
-
-.toDoItem > .removeButton:hover{
-    background-color: thistle;
-}
-
-.toDoItemInfo > .completeButton{
-    margin-left: auto;
-    border: black solid 1px;
-    background-color: rgb(40, 138, 56);
-    color: white;
-}
-
-.toDoItemInfo > .completeButton:hover{
-    background-color: rgb(40, 87, 48);
 }
