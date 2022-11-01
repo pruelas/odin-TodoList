@@ -130,32 +130,32 @@ export function loadProjectToDoItems(toDoItems, projectToDoItemsDiv){
 
             toDoItem.className = "toDoItem";
             toDoItemInfo.className = "toDoItemInfo";
-            toDoItemTitle.className = "title";
-            toDoItemDueDate.className = "dueDate";
-            toDoItemDescription.className = "description";
+            toDoItemTitle.className = "toDoItemTitle";
+            toDoItemDueDate.className = "toDoItemDueDate";
+            toDoItemDescription.className = "toDoItemDescription";
 
             completeButton.className = "completeButton";
             removeButton.className = "removeButton";
 
-            toDoItemTitle.textContent = toDoItems[i].getTitle();
-            toDoItemDueDate.textContent = toDoItems[i].getDueDate();
-            toDoItemDescription.textContent = toDoItems[i].getDescription();
+            toDoItemTitle.textContent = "Title: " + toDoItems[i].getTitle();
+            toDoItemDueDate.textContent = "Due Date: " + toDoItems[i].getDueDate();
+            toDoItemDescription.textContent = " Description: " + toDoItems[i].getDescription();
 
 /*             if(projects[i].getCompleted === true){
                 completeButton.textContent = "Yes";
             } */
 
-            completeButton.textContent = "Complete Placeholder";
+            completeButton.innerHTML = '';
 
             removeButton.textContent = "X";
             removeButton.setAttribute('data-index', i);
             removeButton.onclick = function() { deleteToDoItem(this, projectToDoItemsDiv.getAttribute('data-projectIndex')); };
 
-            toDoItemInfo.append(toDoItemTitle, toDoItemDueDate, toDoItemDescription, completeButton);
+            toDoItemInfo.append(toDoItemTitle, toDoItemDueDate);
 
-            toDoItem.append(removeButton, toDoItemInfo);
+            toDoItem.append(removeButton, toDoItemInfo, toDoItemDescription, completeButton);
 
-            projectToDoItemsDiv.appendChild(toDoItem);
+            projectToDoItemsDiv.append(toDoItem);
             
         }
     }
@@ -166,10 +166,12 @@ export function projectLoad(project){
     let content = document.getElementById("content");
     let contentWrapper = document.createElement("div");
     let projectInfo = document.createElement("div");
+    let projectTitleLabel = document.createElement("div");
     let projectTitle = document.createElement("div");
     let projectDueDate = document.createElement("div");
     let addTodoItem = document.createElement("button");
     let projectToDoItems = document.createElement("div");
+    let projectToDoItemsDiv = document.createElement("div");
 
     contentWrapper.className = "contentWrapper";
     projectInfo.className = "projectInfo";
@@ -179,11 +181,15 @@ export function projectLoad(project){
     projectToDoItems.className = "projectToDoItems";
     project.classList.add("selected");
 
+    projectToDoItemsDiv.id = "projectToDoItemsDiv";
+
     let index = project.getAttribute('data-index');
 
-    projectTitle.textContent =  projects[index].getTitle();
-    projectDueDate.textContent = projects[index].getDueDate();
+    projectTitle.textContent = "Project: " +  projects[index].getTitle();
+    projectDueDate.textContent = "Due Date: " + projects[index].getDueDate();
     //content.innerHTML = "Project content here";
+
+    loadProjectToDoItems(projects[index].getToDoItems(), projectToDoItemsDiv);
 
     addTodoItem.textContent = "Add Todo Item";
     addTodoItem.setAttribute('data-index', index);
@@ -192,7 +198,7 @@ export function projectLoad(project){
     projectToDoItems.innerHTML = "ToDo Items";
 
     projectInfo.append(projectTitle, projectDueDate, addTodoItem);
-    contentWrapper.append(projectInfo, projectToDoItems);
+    contentWrapper.append(projectInfo, projectToDoItems, projectToDoItemsDiv);
     content.append(contentWrapper);
 }
 
@@ -347,10 +353,12 @@ addToDoItem.addEventListener('submit', function(e){
     console.log("addToDoItem");
     let toDoItemForm = document.getElementById("toDoItemForm");
     toDoItemForm.style.visibility = "hidden";
+    let projectToDoItems = document.getElementById("projectToDoItemsDiv");
+    console.log(projectToDoItems);
     let projectToDoItemsDiv = document.querySelector("[data-projectIndex = '" + toDoItemForm.getAttribute('data-projectIndex') + "']");
     projects[toDoItemForm.getAttribute('data-projectIndex')].addToDoItem(new toDoItem(addToDoItem.elements['title'].value, addToDoItem.elements['description'].value, addToDoItem.elements['dueDate'].value, addToDoItem.elements['priority'].value));
     /* addBookToLibrary(); */
-    loadProjectToDoItems(projects[toDoItemForm.getAttribute('data-projectIndex')].getToDoItems(), projectToDoItemsDiv);
+    loadProjectToDoItems(projects[toDoItemForm.getAttribute('data-projectIndex')].getToDoItems(), projectToDoItems);
     e.preventDefault();
     /* e.target.reset(); */
 })

@@ -17,7 +17,6 @@ body{
     "sidebar content";
     /* border: solid black 2px; */
     background-color: rgb(255, 255, 255);
-    
 }
 
 div.header{
@@ -87,7 +86,6 @@ div.sidebar{
     width: 90%;
     padding-left: .2rem;
     border-bottom:solid black 2px;
-    
 }
 
 #projects{
@@ -101,7 +99,6 @@ div.sidebar{
     overflow-y: scroll;
     /* overflow-x: visible; */
     margin-bottom: .1rem;
-    
 }
 
 .projectWrapper{
@@ -184,6 +181,7 @@ div.sidebar{
 	/* outline: inherit; */
     /* margin-right: .4rem; */
 }
+
 .projectWrapper:hover > .removeProjectButton{
     display:block;
     background-color: white;
@@ -205,7 +203,6 @@ div.sidebar{
 
 #addProjectButton:hover{
     background-image: linear-gradient(rgb(51, 110, 51), rgb(51, 110, 51));
-
 }
 
 div#content{
@@ -221,49 +218,161 @@ div#content{
     /* border: solid green 2px; */
     justify-content: center;
     align-items: center;
+    background-color: rgb(240, 240, 240);
 }
 
 .contentWrapper{
     width: 100%;
     height: 100%;
-    background-color: rgb(218, 218, 218);
-    border: solid red 2px;
-    justify-self: center;
+    background-color: rgb(240, 240, 240);
+    /* border: solid red 2px; */
+    display: flex;
+    flex-direction: column;
+    /* justify-self: center; */
 }
 
 .projectInfo{
+    position: relative;
     display: flex;
     border: solid green 2px;
     border-bottom: solid black 2px;
     margin-top: 3rem;
-    margin-left: 3rem;
-    width: 70%;
+    padding-left: 3rem;
 }
 
 .projectTitle{
     border: solid greenyellow 2px;
     font-size: 4rem;
-
+    width: 40%;
+    margin-right: 4rem;
 }
 
 .projectDueDate{
     border: solid limegreen 2px;
     font-size: 3rem;
+    align-self: center;
 }
 
 .projectToDoItems{
     margin-top: .4rem;
     border: solid blue 2px;
     font-size: 2rem;
+    padding-left: 3rem;
+    border-bottom: solid 2px black;
+    width: 95%;
+    align-self: center;
+}
+
+#projectToDoItemsDiv{
+    display: flex;
+    flex-direction: column;
+    border: solid rgb(0, 20, 196) 4px;
+    /* justify-content: center; */
+    align-self: center;
+    width: 95%;
+    max-height: 100%;
+    overflow: scroll;
+}
+
+.toDoItem{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border: solid brown 1px;
+    padding: .5rem;
+    align-items: center;
+    justify-content: center;
+    /* width: 100%; */
+    background-color: aliceblue;
+}
+
+.toDoItemInfo{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    background-color: aliceblue;
+}
+
+.toDoItemTitle{
+    border: solid violet 1px;
+    width: 70%;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.toDoItemDueDate{
+    border: solid orange 1px;
+    width: 20%;
+    font-size: 1.2rem;
+    font-weight: bold;
+    height: 100%;
+}
+
+.toDoItemDescription{
+    border: solid teal 1px;
+    width: 90%;
+    margin-top: .2rem;
+    margin-left: 2rem;
+}
+
+.toDoItem .completeButton{
+    position: absolute;
+    right: .3rem;
+    align-content: center;
+    /* justify-content: center;  */
+    padding: .5rem;
+    font-size: 1rem;
+    /* height: 50%; */
+    /* width: 50%; */
+    /* width: 2rem; */
+    border: solid black 2px;
+    background-color: white;
+    /* text-align: center; */
+    /* line-height: 50%; */
+}
+
+.completeButton .svg{
+    height: 1rem;
+    width: 1rem;
+}
+
+.toDoItem .removeButton{
+    position: absolute;
+    display: none;
+    left: .1rem;
+    align-items: center;
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    border: black solid 1px;
+	/* cursor: pointer; */
+	/* outline: inherit; */
+    /* margin-right: .4rem; */
+}
+.toDoItem:hover > .removeButton{
+    display:block;
+    background-color: white;
+    padding: .4rem;
+    border-radius: 50%;
+}
+
+.addToDoItem{
+    right: .3rem;
+    height: 90%;
+    align-self: center;
+    position: absolute;
+    padding: 1rem;
+    background-image: linear-gradient(rgb(80, 172, 80), rgb(51, 110, 51));
 }
 
 /* div#projectForm{
     display: none;
 } */
-
-footer{
-    display: none;
-}
 
 .projectForm{
     position: absolute;
@@ -309,4 +418,8 @@ div#toDoItemForm{
     justify-self: center;
     /* top: 15vh; */
     background-color: white;
+}
+
+footer{
+    display: none;
 }
