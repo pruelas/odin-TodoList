@@ -31,7 +31,6 @@ div.header{
     border-bottom: solid black 2px;
 }
 
-
 div.sidebar{
     grid-area: sidebar;
     display: flex;
@@ -60,6 +59,7 @@ div.sidebar{
     border-radius: .2rem;
     border: solid white 1px;
     align-content: center;
+    width: 90%;
     /* text-align: center; */
 }
 
@@ -74,6 +74,7 @@ div.sidebar{
 
 .navigation div:hover{
     background-image: linear-gradient(rgb(150, 94, 202), rgb(97, 63, 129));
+    border-radius: .2rem;
 }
 
 .selected{
@@ -234,39 +235,94 @@ div#content{
 .projectInfo{
     position: relative;
     display: flex;
-    border: solid green 2px;
-    border-bottom: solid black 2px;
+    /* border: solid green 2px; */
+    border: solid black 2px;
     margin-top: 3rem;
-    padding-left: 3rem;
+    padding: 1rem;
+    width: 95%;
+    align-self: center;
+    align-content: center;
+    margin-bottom: .4rem;
+    background-image: linear-gradient(rgb(235, 235, 235), rgb(235, 235, 235));
 }
 
 .projectTitle{
-    border: solid greenyellow 2px;
-    font-size: 4rem;
-    width: 40%;
+    height: 100%;
+    /* border: solid greenyellow 2px; */
+    display: flex;
+    font-size: 3rem;
+    flex-grow: 1;
+    /* flex: 1 1 auto; */
     margin-right: 4rem;
+    align-items: end;
+    word-break: break-word;
 }
 
 .projectDueDate{
-    border: solid limegreen 2px;
-    font-size: 3rem;
+    display: flex;
+    /* border: solid limegreen 2px; */
+    height: 100%;
     align-self: center;
+    font-size: 3rem;
+    /* align-items:end; */
+    /* text-align: center; */   
+    word-break: break-word;
 }
 
-.projectToDoItems{
-    margin-top: .4rem;
-    border: solid blue 2px;
+.projectEdit{
+    margin-left: 2rem;
+    align-self: center;
     font-size: 2rem;
-    padding-left: 3rem;
-    border-bottom: solid 2px black;
+    height: 3rem;
+    width: 3rem;
+    border: solid black 1px;
+}
+
+.projectEdit > svg{
+    height: 100%;
+    width: 100%;
+}
+
+.projectToDoItemsWrapper{
+    display: flex;
+    /* padding-top: .4rem; */
+    /* border: solid blue 1px; */
+    font-size: 2rem;
+    /* padding-left: 3rem; */
+    /* border-bottom: solid 2px black; */
     width: 95%;
     align-self: center;
+    align-items: center;
+    /* justify-items: center; */
+    padding: .4rem 0;
+}
+
+.projectToDoItemsLabel{
+    flex-grow: 1;
+}
+
+.addToDoItem{
+    /* align-self: center; */
+    display: flex;
+    right: .3rem;
+    /* height: 90%; */
+    /* justify-self: center; */
+    /* position: absolute; */
+    padding: .5rem;
+    background-image: linear-gradient(rgb(80, 172, 80), rgb(51, 110, 51));
+    border: none;
+    border-radius: .2rem;
+}
+
+.addToDoItem:hover{
+    background-image: linear-gradient(rgb(51, 110, 51), rgb(51, 110, 51)) ;
 }
 
 #projectToDoItemsDiv{
     display: flex;
     flex-direction: column;
-    border: solid rgb(0, 20, 196) 4px;
+    border: solid black 1px;
+    border-top: solid black 2px;
     /* justify-content: center; */
     align-self: center;
     width: 95%;
@@ -278,47 +334,53 @@ div#content{
     position: relative;
     display: flex;
     flex-direction: column;
-    border: solid brown 1px;
-    padding: .5rem;
-    align-items: center;
+    /* border: solid brown 1px; */
+    padding: .7rem;
+    /* align-items: center; */
     justify-content: center;
     /* width: 100%; */
-    background-color: aliceblue;
+    background-image: linear-gradient(rgb(235, 235, 235), rgb(204, 204, 204));
+    border-bottom: white solid 1px;
+    /* border-left: black solid 1px; */
+    /* border-right: black solid 1px; */
 }
 
 .toDoItemInfo{
     display: flex;
     flex-direction: row;
-    width: 100%;
-    background-color: aliceblue;
+    /* width: 100%; */
+    /* background-color: aliceblue; */
 }
 
 .toDoItemTitle{
-    border: solid violet 1px;
-    width: 70%;
+    /* border: solid violet 1px; */
+    /* width: 70%; */
+    flex-grow: 2;
     font-size: 1.2rem;
     font-weight: bold;
+    margin-left: 2.4rem;
 }
 
 .toDoItemDueDate{
-    border: solid orange 1px;
-    width: 20%;
+    /* border: solid orange 1px; */
+    /* width: 20%; */
+    flex-grow: 1;
     font-size: 1.2rem;
     font-weight: bold;
     height: 100%;
 }
 
 .toDoItemDescription{
-    border: solid teal 1px;
-    width: 90%;
+    /* border: solid teal 1px; */
+    width: 95%;
     margin-top: .2rem;
-    margin-left: 2rem;
+    margin-left: 3rem;
 }
 
 .toDoItem .completeButton{
     position: absolute;
-    right: .3rem;
-    align-content: center;
+    left: .8rem;
+    /* align-content: center; */
     /* justify-content: center;  */
     padding: .5rem;
     font-size: 1rem;
@@ -336,39 +398,70 @@ div#content{
     width: 1rem;
 }
 
-.toDoItem .removeButton{
-    position: absolute;
+.toDoItem .changeButtons{
     display: none;
-    left: .1rem;
+    max-height: 100%;
+    width: fit-content;
+    position: absolute;
+    right: 1rem;
+    /* border: black solid 1px; */
+}
+
+.changeButtons .editButton{
+    max-width: 5rem;
+}
+
+.changeButtons .svg{
+    width: 1rem;
+
+}
+
+.toDoItem .removeButton{
+    /* position: absolute; */
+    display: flex;
+    right: 1rem;
     align-items: center;
     background: none;
 	color: inherit;
 	border: none;
-	padding: 0;
+	/* padding: 0; */
 	font: inherit;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: bold;
     text-align: center;
     border: black solid 1px;
 	/* cursor: pointer; */
 	/* outline: inherit; */
     /* margin-right: .4rem; */
-}
-.toDoItem:hover > .removeButton{
-    display:block;
+
+    /* display:flex; */
     background-color: white;
     padding: .4rem;
     border-radius: 50%;
+    /* align-items: center; */
+    justify-items: center;
 }
 
-.addToDoItem{
-    right: .3rem;
-    height: 90%;
-    align-self: center;
-    position: absolute;
-    padding: 1rem;
-    background-image: linear-gradient(rgb(80, 172, 80), rgb(51, 110, 51));
+/* .changeButtons{
+    display:none;
+
+} */
+
+.toDoItem:hover> .changeButtons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
 }
+/* .toDoItem:hover > .removeButton{
+    display:flex;
+    background-color: white;
+    padding: .4rem;
+    border-radius: 50%;
+    align-items: center;
+    justify-items: center;
+} */
 
 /* div#projectForm{
     display: none;
@@ -383,17 +476,24 @@ div#content{
     /* top: 15vh; */
     background-color: white;
     /* z-index: 1; */
+    height: 70%;
+    width: 60%;
+    align-items: center;
+    justify-content: center;
 
 }
 
 .addProjectForm{
-    background-color: floralwhite;
+    background-color: rgb(255, 255, 255);
+    /* border: solid black 1px; */
+    height: 90%;
     width: 90%;
-    padding: 4em;
+    /* padding: 4em; */
     display: flex;
     flex-direction: column;
-    align-content: center;
-    justify-items: center;
+    align-items: center;
+    justify-content: center;
+    font-size: 3vmin;
 }
 
 .addProjectForm> h1{
