@@ -46,21 +46,25 @@ div.sidebar{
 .navigation{
     margin-top: 1em;
     display:grid;
-    gap: .7rem;
+    /* gap: .7rem; */
     margin-bottom: 1em;
-    width: 90%;
+    width: 95%;
     font-size: 1.2rem;
 }
 
 .navigation > .tabs{
     display: flex;
-    padding: .5rem 0;
-    padding-left: .4rem;
-    border-radius: .2rem;
-    border: solid white 1px;
+    padding: 1rem 0;
+    /* padding-left: .4rem; */
+    border-radius: 1rem;
+    border-bottom: solid white 1px;
     align-content: center;
-    width: 90%;
+    width: 100%;
     /* text-align: center; */
+}
+
+.tabs > svg{
+    margin-left: .4rem;
 }
 
 .tabs > div{
@@ -72,13 +76,13 @@ div.sidebar{
     margin-left: .4rem;
 }
 
-.navigation div:hover{
-    background-image: linear-gradient(rgb(150, 94, 202), rgb(97, 63, 129));
-    border-radius: .2rem;
+.navigation > div:hover{
+    background-image: linear-gradient(rgb(141, 141, 141), rgb(94, 94, 94));;
+    border-radius: 1rem;
 }
 
 .selected{
-    background-image: linear-gradient(rgb(150, 94, 202), rgb(97, 63, 129));
+    background-image: linear-gradient(rgb(141, 141, 141), rgb(94, 94, 94));
 }
 
 .projectSidebar{
@@ -114,17 +118,17 @@ div.sidebar{
     /* justify-content: space-between; */
     /* overflow: hidden; */
     /* background-image: linear-gradient(rgb(119, 75, 160), rgb(97, 63, 129)); */
-    padding: .5rem 0rem;
+    padding: .7rem 0rem;
     padding-left: .2rem;
     margin-top: .1rem;
-    border-radius: .4rem;
+    border-radius: 1rem;
     align-items: center;
     border-bottom: solid white 1px;
     /* box-shadow: 1px 4px 1px 1px rgb(0, 0, 0); */
 }
 
 .projectWrapper:hover{
-    background-image: linear-gradient(rgb(150, 94, 202), rgb(97, 63, 129));
+    background-image: linear-gradient(rgb(141, 141, 141), rgb(94, 94, 94));
 }
 
 .title{
@@ -199,11 +203,13 @@ div.sidebar{
     margin: .5rem 0;
     padding: 1rem;
     width: 90%;
-    background-image: linear-gradient(rgb(80, 172, 80), rgb(51, 110, 51));
+    font-size: 1rem;
+    background-image: linear-gradient(rgb(141, 141, 141), rgb(94, 94, 94));
+    border-radius: 2rem;
 }
 
 #addProjectButton:hover{
-    background-image: linear-gradient(rgb(51, 110, 51), rgb(51, 110, 51));
+    background-image: linear-gradient(rgb(94, 94, 94), rgb(94, 94, 94));
 }
 
 div#content{
@@ -236,6 +242,7 @@ div#content{
     position: relative;
     display: flex;
     /* border: solid green 2px; */
+    /* border-radius: 2rem; */
     border: solid black 2px;
     margin-top: 3rem;
     padding: 1rem;
@@ -243,7 +250,7 @@ div#content{
     align-self: center;
     align-content: center;
     margin-bottom: .4rem;
-    background-image: linear-gradient(rgb(235, 235, 235), rgb(235, 235, 235));
+    background-image: linear-gradient(rgb(235, 235, 235), rgb(240, 240, 240));
 }
 
 .projectTitle{
@@ -275,7 +282,8 @@ div#content{
     font-size: 2rem;
     height: 3rem;
     width: 3rem;
-    border: solid black 1px;
+    /* border: solid black 1px; */
+    /* border-radius: 1rem; */
 }
 
 .projectEdit > svg{
@@ -309,13 +317,13 @@ div#content{
     /* justify-self: center; */
     /* position: absolute; */
     padding: .5rem;
-    background-image: linear-gradient(rgb(80, 172, 80), rgb(51, 110, 51));
-    border: none;
-    border-radius: .2rem;
+    background-image: linear-gradient(rgb(141, 141, 141), rgb(94, 94, 94));
+    border: solid black 1px;
+    border-radius: 2rem;
 }
 
 .addToDoItem:hover{
-    background-image: linear-gradient(rgb(51, 110, 51), rgb(51, 110, 51)) ;
+    background-image: linear-gradient(rgb(94, 94, 94), rgb(94, 94, 94)) ;
 }
 
 #projectToDoItemsDiv{
@@ -326,8 +334,9 @@ div#content{
     /* justify-content: center; */
     align-self: center;
     width: 95%;
-    max-height: 100%;
+    max-height: 95%;
     overflow: scroll;
+    margin-bottom: 1rem;
 }
 
 .toDoItem{
@@ -345,6 +354,21 @@ div#content{
     /* border-right: black solid 1px; */
 }
 
+
+
+
+.priority{
+    height: 100%;
+}
+
+.high{
+    border: solid red 3px;
+}
+
+.low{
+    border: solid yellow 2px;
+}
+
 .toDoItemInfo{
     display: flex;
     flex-direction: row;
@@ -358,7 +382,7 @@ div#content{
     flex-grow: 2;
     font-size: 1.2rem;
     font-weight: bold;
-    margin-left: 2.4rem;
+    margin-left: 3rem;
 }
 
 .toDoItemDueDate{
@@ -391,6 +415,7 @@ div#content{
     background-color: white;
     /* text-align: center; */
     /* line-height: 50%; */
+    border-radius: 2rem;
 }
 
 .completeButton .svg{
@@ -407,8 +432,19 @@ div#content{
     /* border: black solid 1px; */
 }
 
+.toDoItem:hover> .changeButtons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+}
+
 .changeButtons .editButton{
+    display: flex;
     max-width: 5rem;
+    align-content: center;
+    /* border: solid 1px pink; */
 }
 
 .changeButtons .svg{
@@ -426,8 +462,8 @@ div#content{
 	border: none;
 	/* padding: 0; */
 	font: inherit;
-    font-size: 1rem;
-    font-weight: bold;
+    font-size: .8rem;
+    /* font-weight: bold; */
     text-align: center;
     border: black solid 1px;
 	/* cursor: pointer; */
@@ -436,7 +472,7 @@ div#content{
 
     /* display:flex; */
     background-color: white;
-    padding: .4rem;
+    padding: .4rem .5rem;
     border-radius: 50%;
     /* align-items: center; */
     justify-items: center;
@@ -447,13 +483,7 @@ div#content{
 
 } */
 
-.toDoItem:hover> .changeButtons{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
 
-}
 /* .toDoItem:hover > .removeButton{
     display:flex;
     background-color: white;
@@ -474,35 +504,41 @@ div#content{
     align-self: center;
     justify-self: center;
     /* top: 15vh; */
-    background-color: white;
+    background-color: rgba(170, 170, 170, 0.616);
     /* z-index: 1; */
-    height: 70%;
-    width: 60%;
+    height: 100%;
+    width: 100%;
     align-items: center;
     justify-content: center;
-
 }
-
 .addProjectForm{
     background-color: rgb(255, 255, 255);
-    /* border: solid black 1px; */
-    height: 90%;
-    width: 90%;
-    /* padding: 4em; */
+    border: solid black 1px;
+    height: fit-content;
+    width: fit-content;
+    padding: 2rem 4rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: 3vmin;
+    font-size: 2vmin;
+    box-shadow: 1px 1px 1px 1px black;
+    border-radius: 1rem;
 }
 
 .addProjectForm> h1{
     font-size: 1.5em;
     font-weight: bolder;
+    border-bottom: solid black 1px;
+    margin-bottom: .5rem;
 }
 
 .addProjectForm > label{
     margin-top: .8em;
+}
+
+.addProjectForm > input{
+    font-size: 1rem;
 }
 
 .addProjectForm > button{
@@ -517,7 +553,51 @@ div#toDoItemForm{
     align-self: center;
     justify-self: center;
     /* top: 15vh; */
-    background-color: white;
+    background-color: rgba(167, 167, 167, 0.575);
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.addToDoItemForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: solid black 1px;
+    padding: 4rem 7rem;
+    background-color: rgb(255, 255, 255);
+    gap: .5rem;
+    border-radius: .5rem;
+    font-size: 2vmin;
+    box-shadow: 1px 1px 1px 1px black;
+}
+
+.addToDoItemForm > h1{
+    font-size: 1.5em;
+    font-weight: bolder;
+    border-bottom: solid black 1px;
+    margin-bottom: 1rem;
+}
+
+.addToDoItemForm > button{
+    margin-top: 1rem;
+    padding: 1rem;
+    background-image: linear-gradient(rgb(141, 141, 141), rgb(114, 114, 114));
+    border-radius: 2rem;
+    border:none;
+}
+
+.addToDoItemForm > button:hover{
+    background-image: linear-gradient(rgb(94, 94, 94), rgb(94, 94, 94));;
+}
+
+.priority{
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+    gap: 1rem;
 }
 
 footer{

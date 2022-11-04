@@ -89,7 +89,7 @@ export const Project = (title, dueDate) =>{
     }
 
     const deleteToDoItem = (index) => {
-        toDoItems.delete(index);
+        delete _toDoItems[index];
         //reload DOM to reassign indeces
     }
 
@@ -110,7 +110,9 @@ export function addToDoItemForm(project){
 /* export let projects = []; */
 
 export function loadProjectToDoItems(toDoItems, projectToDoItemsDiv){
+    projectToDoItemsDiv.innerHTML = '';
     let toDoItem;
+    let toDoItemPriority;
     let toDoItemInfo;
     let toDoItemTitle;
     let toDoItemDueDate;
@@ -123,6 +125,7 @@ export function loadProjectToDoItems(toDoItems, projectToDoItemsDiv){
     for(let i =0 ; i < toDoItems.length; i++){
         if(typeof toDoItems[i] !== 'undefined'){
             toDoItem = document.createElement('div');
+            toDoItemPriority = document.createElement('div');
             toDoItemInfo = document.createElement('div');
             toDoItemTitle = document.createElement('div');
             toDoItemDueDate = document.createElement('div');
@@ -132,7 +135,7 @@ export function loadProjectToDoItems(toDoItems, projectToDoItemsDiv){
             editButton = document.createElement('div');
             removeButton = document.createElement('button');
 
-
+            toDoItemPriority.className = "priority";
             toDoItem.className = "toDoItem";
             toDoItemInfo.className = "toDoItemInfo";
             toDoItemTitle.className = "toDoItemTitle";
@@ -148,6 +151,13 @@ export function loadProjectToDoItems(toDoItems, projectToDoItemsDiv){
             toDoItemDueDate.textContent = "Due Date: " + toDoItems[i].getDueDate();
             toDoItemDescription.textContent = " Description: " + toDoItems[i].getDescription();
 
+            let priority = toDoItems[i].getPriority();
+            if(priority == "high"){
+                toDoItemPriority.classList.add('high');
+            }else{
+                toDoItemPriority.classList.add('low');
+            }
+
 /*             if(projects[i].getCompleted === true){
                 completeButton.textContent = "Yes";
             } */
@@ -156,12 +166,12 @@ export function loadProjectToDoItems(toDoItems, projectToDoItemsDiv){
             editButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="24px" height="24px"><path d="M18.656.93,6.464,13.122A4.966,4.966,0,0,0,5,16.657V18a1,1,0,0,0,1,1H7.343a4.966,4.966,0,0,0,3.535-1.464L23.07,5.344a3.125,3.125,0,0,0,0-4.414A3.194,3.194,0,0,0,18.656.93Zm3,3L9.464,16.122A3.02,3.02,0,0,1,7.343,17H7v-.343a3.02,3.02,0,0,1,.878-2.121L20.07,2.344a1.148,1.148,0,0,1,1.586,0A1.123,1.123,0,0,1,21.656,3.93Z"/><path d="M23,8.979a1,1,0,0,0-1,1V15H18a3,3,0,0,0-3,3v4H5a3,3,0,0,1-3-3V5A3,3,0,0,1,5,2h9.042a1,1,0,0,0,0-2H5A5.006,5.006,0,0,0,0,5V19a5.006,5.006,0,0,0,5,5H16.343a4.968,4.968,0,0,0,3.536-1.464l2.656-2.658A4.968,4.968,0,0,0,24,16.343V9.979A1,1,0,0,0,23,8.979ZM18.465,21.122a2.975,2.975,0,0,1-1.465.8V18a1,1,0,0,1,1-1h3.925a3.016,3.016,0,0,1-.8,1.464Z"/></svg>';
             removeButton.textContent = "X";
             removeButton.setAttribute('data-index', i);
-            removeButton.onclick = function() { deleteToDoItem(this, projectToDoItemsDiv.getAttribute('data-projectIndex')); };
+            removeButton.onclick = function() {deleteToDoItem(this, projectToDoItemsDiv.getAttribute('data-projectIndex')); };
 
             toDoItemInfo.append(toDoItemTitle, toDoItemDueDate);
             changeButtons.append(editButton, removeButton);
 
-            toDoItem.append(completeButton, toDoItemInfo, toDoItemDescription,changeButtons);
+            toDoItem.append(toDoItemPriority,completeButton, toDoItemInfo, toDoItemDescription,changeButtons);
 
             projectToDoItemsDiv.append(toDoItem);
             
@@ -170,6 +180,7 @@ export function loadProjectToDoItems(toDoItems, projectToDoItemsDiv){
 }
 
 export function projectLoad(project){
+    console.log("projectLoad");
     deleteContent();
     let content = document.getElementById("content");
     let contentWrapper = document.createElement("div");
@@ -193,9 +204,11 @@ export function projectLoad(project){
     addTodoItem.className = "addToDoItem";
     project.classList.add("selected");
 
-    projectToDoItemsDiv.id = "projectToDoItemsDiv";
 
     let index = project.getAttribute('data-index');
+
+    projectToDoItemsDiv.id = "projectToDoItemsDiv";
+    projectToDoItemsDiv.setAttribute('data-projectIndex', index)
 
     projectTitle.textContent = "Project: " +  projects[index].getTitle();
     projectDueDate.textContent = "Due Date: " + projects[index].getDueDate();
@@ -245,13 +258,13 @@ export function loadProjectSidebar(){
     let removeButton;
 
     for(let i = 0; i < projects.length; i++){
-        /*
-        console.log(i + "  " + typeof projects[i] );
-        let currProject = typeof(projects[i]);
+        
+        console.log(i);
+        /*let currProject = typeof(projects[i]);
         console.log(currProject + " ? "+ (currProject !== "undefined"));
         console.log("after asssignment " + typeof(currProject));*/
         if(typeof projects[i] !== "undefined"){
-            console.log("in if statement");
+            console.log("in if statement" + " " +  typeof projects[i]);
             projectWrapper = document.createElement('div');
             projectIcon = document.createElement('div');
             projectTitle = document.createElement('div');
@@ -278,13 +291,15 @@ export function loadProjectSidebar(){
             removeButton.textContent = "X";
 
             removeButton.setAttribute('data-index', i);
-            removeButton.onclick = function(){deleteProject(this); };
+            removeButton.onclick = function(e){ e.stopPropagation(); deleteProject(this); };
 
             
 
             projectWrapper.append(projectIcon, projectTitle, removeButton);
             projectSidebar.appendChild(projectWrapper);
 
+        }else{
+            console.log("skipped");
         }
     }
 
@@ -402,14 +417,17 @@ export function deleteProject(project){
     console.log(project.getAttribute('data-index'));
     delete projects[project.getAttribute("data-index")];
     console.log('deleting project');
+    deleteSidebarContent();
     loadProjectSidebar();
     
 }
 
 export function deleteToDoItem(toDoItem, projectIndex){
+    console.log(toDoItem + "  " + projectIndex);
     projects[projectIndex].deleteToDoItem(toDoItem.getAttribute("data-index"));
     console.log('deleting toDoItem');
-    loadProjects;
+    let  projectToDoItemsDiv = document.getElementById('projectToDoItemsDiv');
+    loadProjectToDoItems(projects[projectIndex].getToDoItems(), projectToDoItemsDiv);
     
 }
 
@@ -420,4 +438,14 @@ export function deleteContent(){
     tabs.forEach(tab => {
         tab.classList.remove("selected");
     });
+}
+
+export function deleteSidebarContent(){
+    let projectSidebar = document.getElementById('projectSidebar');
+    projectSidebar.innerHTML = '';
+}
+
+export function deleteToDoItemContent(){
+    let toDoItemDiv = document.getElementById('projectToDoItemsDiv');
+    toDoItemDiv.innerHTML = "";
 }
