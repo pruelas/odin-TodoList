@@ -41,8 +41,10 @@ let contentDiv = document.getElementById("content");
 function addProjectItemForm(){
     console.log("here");
     console.log(projects);
-    var newProjectForm = document.getElementById("projectForm");
+    let newProjectForm = document.getElementById("projectForm");
     newProjectForm.style.visibility = "visible";
+    let addProjectForm = document.getElementById("addProjectForm");
+    addProjectForm.style.display = "flex";
 };
 
 /*
@@ -106,11 +108,25 @@ document.body.addEventListener('click', function(e){
     if( (e.target.className !== "addProjectForm" && e.target.className !=="addProject" && e.target instanceof HTMLDivElement) && addProjectForm.style.visibility !=="hidden"){
         addProjectForm.style.visibility = 'hidden';
     }
-})
+});
 
 document.body.addEventListener('click', function(e){
     var addToDoItemForm = document.getElementById("toDoItemForm");
     if( (e.target.className !== "addToDoItemForm" && e.target.className !=="priority" && e.target instanceof HTMLDivElement) && addToDoItemForm.style.visibility !=="hidden"){
         addToDoItemForm.style.visibility = 'hidden';
     }
-})
+});
+
+document.body.addEventListener('click', function(e){
+    var addProjectForm = document.getElementById("projectForm");
+    if( (e.target.className !== "editProjectForm" && e.target.className !=="editProject" && e.target instanceof HTMLDivElement) && addProjectForm.style.visibility !=="hidden"){
+        addProjectForm.style.visibility = 'hidden';
+    }
+});
+
+document.body.addEventListener('click', function(e){
+    var editToDoItemForm = document.getElementById("toDoItemForm");
+    if( (e.target.className !== "editToDoItemForm" && e.target.className !=="priority" && e.target instanceof HTMLDivElement) && editToDoItemForm.style.visibility !=="hidden"){
+        editToDoItemForm.style.visibility = 'hidden';
+    }
+});
