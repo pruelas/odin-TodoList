@@ -121,6 +121,7 @@ export function loadProjectToDoItems(toDoItems, projectToDoItemsDiv){
     projectToDoItemsDiv.innerHTML = '';
     let toDoItem;
     let toDoItemPriority;
+    let toDoItemTextWrapper;
     let toDoItemInfo;
     let toDoItemTitle;
     let toDoItemDueDate;
@@ -134,17 +135,19 @@ export function loadProjectToDoItems(toDoItems, projectToDoItemsDiv){
         if(typeof toDoItems[i] !== 'undefined'){
             toDoItem = document.createElement('div');
             toDoItemPriority = document.createElement('div');
+            toDoItemTextWrapper = document.createElement('div');
             toDoItemInfo = document.createElement('div');
             toDoItemTitle = document.createElement('div');
             toDoItemDueDate = document.createElement('div');
             toDoItemDescription = document.createElement('div');
             completeButton = document.createElement('button');
             changeButtons = document.createElement('div');
-            editButton = document.createElement('button');
+            editButton = document.createElement('div');
             removeButton = document.createElement('button');
 
-            toDoItemPriority.className = "priority";
             toDoItem.className = "toDoItem";
+            toDoItemPriority.className = "priority";
+            toDoItemTextWrapper.className = "toDoItemTextWrapper";
             toDoItemInfo.className = "toDoItemInfo";
             toDoItemTitle.className = "toDoItemTitle";
             toDoItemDueDate.className = "toDoItemDueDate";
@@ -192,7 +195,9 @@ export function loadProjectToDoItems(toDoItems, projectToDoItemsDiv){
             toDoItemInfo.append(toDoItemTitle, toDoItemDueDate);
             changeButtons.append(editButton, removeButton);
 
-            toDoItem.append(toDoItemPriority,completeButton, toDoItemInfo, toDoItemDescription,changeButtons);
+            toDoItemTextWrapper.append(toDoItemInfo, toDoItemDescription);
+
+            toDoItem.append(toDoItemPriority,completeButton, toDoItemTextWrapper ,changeButtons);
 
             projectToDoItemsDiv.append(toDoItem);
             
@@ -209,6 +214,7 @@ export function projectLoad(project){
     let projectTitle = document.createElement("div");
     let projectDueDate = document.createElement("div");
     let projectEditIcon = document.createElement("div");
+    let projectRemoveButton = document.createElement("div");
     let projectToDoItemsWrapper = document.createElement("div");
     let projectToDoItemsLabel = document.createElement("div");
     let addTodoItem = document.createElement("div");
@@ -219,6 +225,7 @@ export function projectLoad(project){
     projectDueDate.className = "projectDueDate";
     projectTitle.className = "projectTitle";
     projectEditIcon.className = "projectEdit";
+    projectRemoveButton.className = "projectRemove";
     projectToDoItemsWrapper.className = "projectToDoItemsWrapper";
     projectToDoItemsLabel.className = "projectToDoItemsLabel"
     addTodoItem.className = "addToDoItem";
@@ -232,11 +239,14 @@ export function projectLoad(project){
     projectTitle.textContent = "Project: " +  projects[index].getTitle();
     projectDueDate.textContent = "Due Date: " + projects[index].getDueDate();
     projectEditIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="24px" height="24px"><path d="M18.656.93,6.464,13.122A4.966,4.966,0,0,0,5,16.657V18a1,1,0,0,0,1,1H7.343a4.966,4.966,0,0,0,3.535-1.464L23.07,5.344a3.125,3.125,0,0,0,0-4.414A3.194,3.194,0,0,0,18.656.93Zm3,3L9.464,16.122A3.02,3.02,0,0,1,7.343,17H7v-.343a3.02,3.02,0,0,1,.878-2.121L20.07,2.344a1.148,1.148,0,0,1,1.586,0A1.123,1.123,0,0,1,21.656,3.93Z"/><path d="M23,8.979a1,1,0,0,0-1,1V15H18a3,3,0,0,0-3,3v4H5a3,3,0,0,1-3-3V5A3,3,0,0,1,5,2h9.042a1,1,0,0,0,0-2H5A5.006,5.006,0,0,0,0,5V19a5.006,5.006,0,0,0,5,5H16.343a4.968,4.968,0,0,0,3.536-1.464l2.656-2.658A4.968,4.968,0,0,0,24,16.343V9.979A1,1,0,0,0,23,8.979ZM18.465,21.122a2.975,2.975,0,0,1-1.465.8V18a1,1,0,0,1,1-1h3.925a3.016,3.016,0,0,1-.8,1.464Z"/></svg>';
+    projectRemoveButton.textContent = 'X';
     //content.innerHTML = "Project content here";
 
     projectEditIcon.setAttribute('data-index', index)
     projectEditIcon.onclick = function() { editProjectForm(this);};
 
+    projectRemoveButton.setAttribute('data-index', index);
+    projectRemoveButton.onclick = function() { deleteProject(this);};
 
     loadProjectToDoItems(projects[index].getToDoItems(), projectToDoItemsDiv);
 
@@ -246,7 +256,7 @@ export function projectLoad(project){
 
     projectToDoItemsLabel.textContent = "ToDo Items";
 
-    projectInfo.append(projectTitle, projectDueDate, projectEditIcon);
+    projectInfo.append(projectTitle, projectDueDate, projectEditIcon, projectRemoveButton);
     projectToDoItemsWrapper.append(projectToDoItemsLabel, addTodoItem);
     contentWrapper.append(projectInfo, projectToDoItemsWrapper, projectToDoItemsDiv);
     content.append(contentWrapper);
@@ -255,6 +265,7 @@ export function projectLoad(project){
 export function homeLoad(){
     deleteContent();
     let content = document.getElementById("content");
+    document.getElementById('home').classList.add('selected');
     content.innerHTML = "Home Load";
 };
 
@@ -524,6 +535,14 @@ export function deleteProject(project){
     delete projects[project.getAttribute("data-index")];
     console.log('deleting project');
     deleteSidebarContent();
+    let selectedTab = document.querySelector("selected");
+    let indexOfSelectedTab = selectedTab.getAttribute('data-index');
+    if(indexOfSelectedTab == project.getAttribute('data-index')){
+        deleteContent();
+    }
+    console.log('selected');
+    console.log(selectedTab);
+    
     loadProjectSidebar(-1);
     
 }

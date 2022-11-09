@@ -342,11 +342,12 @@ div#content{
 .toDoItem{
     position: relative;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     /* border: solid brown 1px; */
     padding: .7rem;
     /* align-items: center; */
-    justify-content: center;
+    /* justify-content: center; */
+    align-items: center;
     /* width: 100%; */
     background-image: linear-gradient(rgb(235, 235, 235), rgb(204, 204, 204));
     border-bottom: white solid 1px;
@@ -354,19 +355,22 @@ div#content{
     /* border-right: black solid 1px; */
 }
 
-
-
-
 .priority{
-    height: 100%;
+    height: 90%;
+    border: solid black 1px;
+    position: absolute;
+    left: 0rem;
+    
 }
 
 .high{
     border: solid red 3px;
+    /* border-right: black solid 1px; */
 }
 
 .low{
-    border: solid yellow 2px;
+    border: solid yellow 3px;
+    /* border-right: black solid 1px; */
 }
 
 .toDoItemInfo{
@@ -476,6 +480,16 @@ div#content{
     border-radius: 50%;
     /* align-items: center; */
     justify-items: center;
+}
+
+.editButton:hover > svg{
+    /* color: rgb(167, 167, 167); */
+    fill: rgb(158, 158, 158);
+}
+
+.toDoItem .removeButton:hover{
+    background-color: rgb(190, 190, 190);
+    color: rgb(0, 0, 0);
 }
 
 /* .changeButtons{
