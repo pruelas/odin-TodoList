@@ -1,6 +1,6 @@
 html{
     height: 100%;
-    width: 100%;
+    max-width: 100%;
 }
 
 body{
@@ -276,32 +276,61 @@ div#content{
     word-break: break-word;
 }
 
+.projectInfo:hover > .projectEdit{
+    display: flex;
+    right: .5rem;
+    /* position: absolute; */
+
+}
+
+.projectInfo:hover > .projectRemove{
+    display: flex;
+    right: .2rem;
+    /* position:absolute; */
+}
+
 .projectEdit{
+    display: none;
     margin-left: 2rem;
     align-self: center;
     font-size: 2rem;
-    height: 3rem;
-    width: 3rem;
+    height: 2rem;
+    width: 2rem;
+    margin-right: .2rem;
     /* border: solid black 1px; */
     /* border-radius: 1rem; */
 }
 
 .projectEdit > svg{
-    height: 100%;
-    width: 100%;
+    height: 2rem;
+}
+
+.projectEdit > svg:hover{
+    fill:rgb(182, 182, 182);
+}
+
+.projectRemove{
+    display: none;
+    font-size: 1rem;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    padding: .4rem .5rem;
+    border-radius: 50%;
+    border: solid black 1px;
+}
+
+.projectRemove:hover{
+    background-color: rgb(163, 163, 163);
 }
 
 .projectToDoItemsWrapper{
     display: flex;
-    /* padding-top: .4rem; */
-    /* border: solid blue 1px; */
     font-size: 2rem;
-    /* padding-left: 3rem; */
-    /* border-bottom: solid 2px black; */
     width: 95%;
     align-self: center;
     align-items: center;
-    /* justify-items: center; */
     padding: .4rem 0;
 }
 
@@ -310,12 +339,8 @@ div#content{
 }
 
 .addToDoItem{
-    /* align-self: center; */
     display: flex;
     right: .3rem;
-    /* height: 90%; */
-    /* justify-self: center; */
-    /* position: absolute; */
     padding: .5rem;
     background-image: linear-gradient(rgb(141, 141, 141), rgb(94, 94, 94));
     border: solid black 1px;
@@ -331,7 +356,6 @@ div#content{
     flex-direction: column;
     border: solid black 1px;
     border-top: solid black 2px;
-    /* justify-content: center; */
     align-self: center;
     width: 95%;
     max-height: 95%;
@@ -343,16 +367,11 @@ div#content{
     position: relative;
     display: flex;
     flex-direction: row;
-    /* border: solid brown 1px; */
-    padding: .7rem;
-    /* align-items: center; */
-    /* justify-content: center; */
+    padding: .7rem 0;
     align-items: center;
-    /* width: 100%; */
     background-image: linear-gradient(rgb(235, 235, 235), rgb(204, 204, 204));
     border-bottom: white solid 1px;
-    /* border-left: black solid 1px; */
-    /* border-right: black solid 1px; */
+    /* overflow: hidden; */
 }
 
 .priority{
@@ -365,60 +384,54 @@ div#content{
 
 .high{
     border: solid red 3px;
-    /* border-right: black solid 1px; */
 }
 
 .low{
     border: solid yellow 3px;
-    /* border-right: black solid 1px; */
+}
+
+.toDoItemTextWrapper{
+    display: flex;
+    flex-direction: column;
+    flex:1;
 }
 
 .toDoItemInfo{
     display: flex;
     flex-direction: row;
-    /* width: 100%; */
-    /* background-color: aliceblue; */
 }
 
 .toDoItemTitle{
-    /* border: solid violet 1px; */
-    /* width: 70%; */
     flex-grow: 2;
     font-size: 1.2rem;
     font-weight: bold;
     margin-left: 3rem;
+    word-break: break-word;
 }
 
 .toDoItemDueDate{
-    /* border: solid orange 1px; */
-    /* width: 20%; */
     flex-grow: 1;
     font-size: 1.2rem;
     font-weight: bold;
     height: 100%;
+    word-break: break-word;
 }
 
 .toDoItemDescription{
-    /* border: solid teal 1px; */
-    width: 95%;
+    display: flex;
+    max-width: 95%;
     margin-top: .2rem;
-    margin-left: 3rem;
+    padding-left: 3rem;
+    word-break: break-word;
 }
 
 .toDoItem .completeButton{
     position: absolute;
     left: .8rem;
-    /* align-content: center; */
-    /* justify-content: center;  */
     padding: .5rem;
     font-size: 1rem;
-    /* height: 50%; */
-    /* width: 50%; */
-    /* width: 2rem; */
     border: solid black 2px;
     background-color: white;
-    /* text-align: center; */
-    /* line-height: 50%; */
     border-radius: 2rem;
 }
 
@@ -433,7 +446,6 @@ div#content{
     width: fit-content;
     position: absolute;
     right: 1rem;
-    /* border: black solid 1px; */
 }
 
 .toDoItem:hover> .changeButtons{
@@ -446,44 +458,36 @@ div#content{
 
 .changeButtons .editButton{
     display: flex;
-    max-width: 5rem;
+    max-width: 4rem;
     align-content: center;
-    /* border: solid 1px pink; */
+    background-color: rgb(255, 255, 255);
+    padding: .1rem;
+    border: black solid 1px;
+    border-radius: .2rem;
 }
 
 .changeButtons .svg{
     width: 1rem;
-
 }
 
 .toDoItem .removeButton{
-    /* position: absolute; */
     display: flex;
     right: 1rem;
     align-items: center;
     background: none;
 	color: inherit;
 	border: none;
-	/* padding: 0; */
 	font: inherit;
     font-size: .8rem;
-    /* font-weight: bold; */
     text-align: center;
     border: black solid 1px;
-	/* cursor: pointer; */
-	/* outline: inherit; */
-    /* margin-right: .4rem; */
-
-    /* display:flex; */
     background-color: white;
     padding: .4rem .5rem;
     border-radius: 50%;
-    /* align-items: center; */
     justify-items: center;
 }
 
 .editButton:hover > svg{
-    /* color: rgb(167, 167, 167); */
     fill: rgb(158, 158, 158);
 }
 
@@ -496,7 +500,6 @@ div#content{
     display:none;
 
 } */
-
 
 /* .toDoItem:hover > .removeButton{
     display:flex;
