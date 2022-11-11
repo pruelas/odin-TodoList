@@ -53,7 +53,7 @@ addProjectButton.classList.add("addProjectButton");
 addProjectButton.textContent = "Add Project";
 
 contentDiv.append(addProjectButton);*/
-document.getElementById('home').classList.add('selected');
+document.getElementById("home").classList.add('selected');
 homeLoad();
 
 const projectButton = document.getElementById("addProjectButton");
