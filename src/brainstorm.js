@@ -37,8 +37,8 @@ export const toDoItem = (title, description, dueDate, priority, project) => {
         _priority = priority;
     }
 
-    const changeCompleted = (completed) => {
-        if(completed == false){
+    const changeCompleted = () => {
+        if(_completed == false){
             _completed  = true;
         }else{
             _completed = false;
@@ -93,6 +93,11 @@ export const Project = (title, dueDate) =>{
     }
 
     const deleteToDoItem = (index) => {
+        if(_toDoItems[index].getCompleted == false){
+            _itemsCompleted -= 1;
+        }else{
+            _itemsCompleted += 1;
+        }
         delete _toDoItems[index];
         //reload DOM to reassign indeces
     }
@@ -152,6 +157,7 @@ export function loadProjectToDoItems(toDoItems, projectToDoItemsDiv){
             toDoItemDescription.className = "toDoItemDescription";
 
             completeButton.className = "completeButton";
+            completeButton.id = "completeButton";
             changeButtons.className = "changeButtons";
             editButton.className = "editButton";
             removeButton.className = "removeButton";
@@ -173,7 +179,7 @@ export function loadProjectToDoItems(toDoItems, projectToDoItemsDiv){
             let completed = toDoItems[i].getCompleted();
             if(completed == true){
                 completeButton.classList.add('completed');
-                completeButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 507.506 507.506;" xml:space="preserve" width="24px" height="24px"><g><path d="M163.865,436.934c-14.406,0.006-28.222-5.72-38.4-15.915L9.369,304.966c-12.492-12.496-12.492-32.752,0-45.248l0,0   c12.496-12.492,32.752-12.492,45.248,0l109.248,109.248L452.889,79.942c12.496-12.492,32.752-12.492,45.248,0l0,0   c12.492,12.496,12.492,32.752,0,45.248L202.265,421.019C192.087,431.214,178.271,436.94,163.865,436.934z"/></g></svg>';
+                completeButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 507.506 507.506" style="enable-background:new 0 0 507.506 507.506;" xml:space="preserve" width="24px" height="24px"><g><path d="M163.865,436.934c-14.406,0.006-28.222-5.72-38.4-15.915L9.369,304.966c-12.492-12.496-12.492-32.752,0-45.248l0,0   c12.496-12.492,32.752-12.492,45.248,0l109.248,109.248L452.889,79.942c12.496-12.492,32.752-12.492,45.248,0l0,0   c12.492,12.496,12.492,32.752,0,45.248L202.265,421.019C192.087,431.214,178.271,436.94,163.865,436.934z"/></g></svg>';
             }else{
                 completeButton.classList.add('notComplete');
                 completeButton.innerHTML = '';
@@ -205,21 +211,26 @@ export function loadProjectToDoItems(toDoItems, projectToDoItemsDiv){
 }
 
 export function updateComplete(project){
+    let projectToDoItemsDiv = document.getElementById('projectToDoItemsDiv');
     let toDoIndex = project.getAttribute('data-toDoindex');
     let projectIndex = document.getElementById("projectToDoItemsDiv").getAttribute('data-projectIndex');
     let toDoItems = projects[projectIndex].getToDoItems();
-    let completeButton = document.getElementById('completeButton');
+    //let completeButton = document.getElementById('completeButton');
+    console.log(toDoItems[toDoIndex].getCompleted());
     if(toDoItems[toDoIndex].getCompleted() == true){
-        completeButton.innerHTML = '';
-        completeButton.classListremove('completed');
-        completeButton.classList.add('notCompleted');
-        toDoItems[toDoIndex].updateComplete(false);
+        console.log("now not completed");
+        //completeButton.innerHTML = '';
+        completeButton.classList.remove('completed');
+       // completeButton.classList.add('notCompleted');
+        projects[projectIndex].completeToDoItem(toDoIndex);
     }else{
-        completeButton.innerHTML =  '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 507.506 507.506;" xml:space="preserve" width="24px" height="24px"><g><path d="M163.865,436.934c-14.406,0.006-28.222-5.72-38.4-15.915L9.369,304.966c-12.492-12.496-12.492-32.752,0-45.248l0,0   c12.496-12.492,32.752-12.492,45.248,0l109.248,109.248L452.889,79.942c12.496-12.492,32.752-12.492,45.248,0l0,0   c12.492,12.496,12.492,32.752,0,45.248L202.265,421.019C192.087,431.214,178.271,436.94,163.865,436.934z"/></g></svg>';
-        completeButton.classList.add('completed');
+        console.log("now completed");
+       // completeButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 507.506 507.506" style="enable-background:new 0 0 507.506 507.506;" xml:space="preserve" width="12px" height="12px"><g><path d="M163.865,436.934c-14.406,0.006-28.222-5.72-38.4-15.915L9.369,304.966c-12.492-12.496-12.492-32.752,0-45.248l0,0   c12.496-12.492,32.752-12.492,45.248,0l109.248,109.248L452.889,79.942c12.496-12.492,32.752-12.492,45.248,0l0,0   c12.492,12.496,12.492,32.752,0,45.248L202.265,421.019C192.087,431.214,178.271,436.94,163.865,436.934z"/></g></svg>';
+       // completeButton.classList.add('completed');
         completeButton.classList.remove('notCompleted');
-        toDoItems[toDoIndex].updateComplete(true);
+        projects[projectIndex].completeToDoItem(toDoIndex);
     }
+    loadProjectToDoItems(toDoItems, projectToDoItemsDiv);
 
 }
 
