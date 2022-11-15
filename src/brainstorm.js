@@ -186,7 +186,7 @@ export function loadProjectToDoItems(toDoItems, projectToDoItemsDiv){
             }
             
             completeButton.setAttribute('data-toDoIndex', i);
-            completeButton.onclick = function(){console.log('complete button'); updateComplete(this);};
+            completeButton.onclick = function(){console.log('complete button'); updateComplete(this, 'project');};
             
             editButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="24px" height="24px"><path d="M18.656.93,6.464,13.122A4.966,4.966,0,0,0,5,16.657V18a1,1,0,0,0,1,1H7.343a4.966,4.966,0,0,0,3.535-1.464L23.07,5.344a3.125,3.125,0,0,0,0-4.414A3.194,3.194,0,0,0,18.656.93Zm3,3L9.464,16.122A3.02,3.02,0,0,1,7.343,17H7v-.343a3.02,3.02,0,0,1,.878-2.121L20.07,2.344a1.148,1.148,0,0,1,1.586,0A1.123,1.123,0,0,1,21.656,3.93Z"/><path d="M23,8.979a1,1,0,0,0-1,1V15H18a3,3,0,0,0-3,3v4H5a3,3,0,0,1-3-3V5A3,3,0,0,1,5,2h9.042a1,1,0,0,0,0-2H5A5.006,5.006,0,0,0,0,5V19a5.006,5.006,0,0,0,5,5H16.343a4.968,4.968,0,0,0,3.536-1.464l2.656-2.658A4.968,4.968,0,0,0,24,16.343V9.979A1,1,0,0,0,23,8.979ZM18.465,21.122a2.975,2.975,0,0,1-1.465.8V18a1,1,0,0,1,1-1h3.925a3.016,3.016,0,0,1-.8,1.464Z"/></svg>';
             editButton.setAttribute('data-toDoIndex', i);
@@ -210,28 +210,35 @@ export function loadProjectToDoItems(toDoItems, projectToDoItemsDiv){
     }
 }
 
-export function updateComplete(project){
-    let projectToDoItemsDiv = document.getElementById('projectToDoItemsDiv');
-    let toDoIndex = project.getAttribute('data-toDoindex');
-    let projectIndex = document.getElementById("projectToDoItemsDiv").getAttribute('data-projectIndex');
-    let toDoItems = projects[projectIndex].getToDoItems();
-    //let completeButton = document.getElementById('completeButton');
-    console.log(toDoItems[toDoIndex].getCompleted());
-    if(toDoItems[toDoIndex].getCompleted() == true){
-        console.log("now not completed");
-        //completeButton.innerHTML = '';
-        completeButton.classList.remove('completed');
-       // completeButton.classList.add('notCompleted');
-        projects[projectIndex].completeToDoItem(toDoIndex);
+export function updateComplete(project, tab){
+    if(tab == 'project'){
+        let projectToDoItemsDiv = document.getElementById('projectToDoItemsDiv');
+        let toDoIndex = project.getAttribute('data-toDoindex');
+        let projectIndex = document.getElementById("projectToDoItemsDiv").getAttribute('data-projectIndex');
+        let toDoItems = projects[projectIndex].getToDoItems();
+        //let completeButton = document.getElementById('completeButton');
+        console.log(toDoItems[toDoIndex].getCompleted());
+        if(toDoItems[toDoIndex].getCompleted() == true){
+            console.log("now not completed");
+            //completeButton.innerHTML = '';
+            completeButton.classList.remove('completed');
+        // completeButton.classList.add('notCompleted');
+            projects[projectIndex].completeToDoItem(toDoIndex);
+        }else{
+            console.log("now completed");
+        // completeButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 507.506 507.506" style="enable-background:new 0 0 507.506 507.506;" xml:space="preserve" width="12px" height="12px"><g><path d="M163.865,436.934c-14.406,0.006-28.222-5.72-38.4-15.915L9.369,304.966c-12.492-12.496-12.492-32.752,0-45.248l0,0   c12.496-12.492,32.752-12.492,45.248,0l109.248,109.248L452.889,79.942c12.496-12.492,32.752-12.492,45.248,0l0,0   c12.492,12.496,12.492,32.752,0,45.248L202.265,421.019C192.087,431.214,178.271,436.94,163.865,436.934z"/></g></svg>';
+        // completeButton.classList.add('completed');
+            completeButton.classList.remove('notCompleted');
+            projects[projectIndex].completeToDoItem(toDoIndex);
+        }
+        loadProjectToDoItems(toDoItems, projectToDoItemsDiv);
     }else{
-        console.log("now completed");
-       // completeButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 507.506 507.506" style="enable-background:new 0 0 507.506 507.506;" xml:space="preserve" width="12px" height="12px"><g><path d="M163.865,436.934c-14.406,0.006-28.222-5.72-38.4-15.915L9.369,304.966c-12.492-12.496-12.492-32.752,0-45.248l0,0   c12.496-12.492,32.752-12.492,45.248,0l109.248,109.248L452.889,79.942c12.496-12.492,32.752-12.492,45.248,0l0,0   c12.492,12.496,12.492,32.752,0,45.248L202.265,421.019C192.087,431.214,178.271,436.94,163.865,436.934z"/></g></svg>';
-       // completeButton.classList.add('completed');
-        completeButton.classList.remove('notCompleted');
+        let toDoIndex = project.getAttribute('data-toDoIndex');
+        let projectIndex = project.getAttribute('data-projectIndex');
+        // let projectToDoItemsDiv = document.getElementById('projectToDoItems' + toDoIndex); 
         projects[projectIndex].completeToDoItem(toDoIndex);
-    }
-    loadProjectToDoItems(toDoItems, projectToDoItemsDiv);
-
+        loadHomeToDoItems(projectIndex);
+    }  
 }
 
 export function projectLoad(project){
@@ -293,9 +300,154 @@ export function homeLoad(){
     deleteContent();
     let content = document.getElementById("content");
     document.getElementById('home').classList.add('selected');
-    content.innerHTML = "Home Load";
+    loadHomeProjects();
     console.log("home load");
 };
+
+export function loadHomeProjects(){
+    let content = document.getElementById("content");
+    content.innerHTML = ""; //remove any previous existing projects
+    let contentWrapper = document.createElement("div");
+    contentWrapper.classList.add('contentWrapper');
+    let projectWrapper;
+    let projectInfo;
+    let projectTitle;
+    let projectDueDate;
+    let projectExpandButton;
+    let projectToDoItems;
+
+    let projectLabel = document.createElement('div');
+    projectLabel.className = "projectsLabel";
+    projectLabel.textContent = "Projects";
+    contentWrapper.append(projectLabel);
+
+    for(let i = 0; i < projects.length; i++){
+        if(typeof projects[i] !== "undefined"){
+            projectWrapper = document.createElement('div');
+            projectInfo = document.createElement('div');
+            projectTitle = document.createElement('div');
+            projectDueDate = document.createElement('div');
+            projectExpandButton = document.createElement('button');
+            projectToDoItems = document.createElement('div');
+            
+            projectWrapper.className = "homeProjectWrapper";
+            projectInfo.className = "homeProjectInfo";
+            projectTitle.className = "homeProjectTitle";
+            projectDueDate.className = "homeProjectDueDate";
+            projectToDoItems.className = "projectToDoItems";
+            projectExpandButton.className = "projectExpandtButton";
+
+            //add eventListener to display project todoItems contents when clicked
+            projectWrapper.setAttribute('data-index', i);
+            projectWrapper.onclick = function() { console.log('projectWrapper')};
+
+
+            //projectIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="24px" height="24px"><path d="M17.5,24H6.5c-2.481,0-4.5-2.019-4.5-4.5V4.5C2,2.019,4.019,0,6.5,0h11c2.481,0,4.5,2.019,4.5,4.5v15c0,2.481-2.019,4.5-4.5,4.5ZM6.5,1c-1.93,0-3.5,1.57-3.5,3.5v15c0,1.93,1.57,3.5,3.5,3.5h11c1.93,0,3.5-1.57,3.5-3.5V4.5c0-1.93-1.57-3.5-3.5-3.5H6.5Zm11.5,4.5c0-.276-.224-.5-.5-.5h-6c-.276,0-.5,.224-.5,.5s.224,.5,.5,.5h6c.276,0,.5-.224,.5-.5Zm0,6c0-.276-.224-.5-.5-.5h-6c-.276,0-.5,.224-.5,.5s.224,.5,.5,.5h6c.276,0,.5-.224,.5-.5Zm0,6c0-.276-.224-.5-.5-.5h-6c-.276,0-.5,.224-.5,.5s.224,.5,.5,.5h6c.276,0,.5-.224,.5-.5ZM8.5,7h-2c-.276,0-.5-.224-.5-.5v-2c0-.276,.224-.5,.5-.5h2c.276,0,.5,.224,.5,.5v2c0,.276-.224,.5-.5,.5Zm-1.5-1h1v-1h-1v1Zm1.5,7h-2c-.276,0-.5-.224-.5-.5v-2c0-.276,.224-.5,.5-.5h2c.276,0,.5,.224,.5,.5v2c0,.276-.224,.5-.5,.5Zm-1.5-1h1v-1h-1v1Zm1.5,7h-2c-.276,0-.5-.224-.5-.5v-2c0-.276,.224-.5,.5-.5h2c.276,0,.5,.224,.5,.5v2c0,.276-.224,.5-.5,.5Zm-1.5-1h1v-1h-1v1Z"/></svg>';
+            projectTitle.textContent = "Title: " + projects[i].getTitle();
+            projectDueDate.textContent = "Due Date: " + projects[i].getDueDate();
+            projectExpandButton.textContent = "\/";
+
+            projectToDoItems.id = 'projectToDoItems' + i;
+            console.log(projectToDoItems.id);
+            projectExpandButton.setAttribute('data-index', i);
+            projectExpandButton.onclick = function(e){ /*e.stopPropagation(); deleteProject(this); */ console.log('expand'); loadHomeToDoItems(this);};
+
+            
+            projectInfo.append(projectTitle, projectDueDate, projectExpandButton);
+            projectWrapper.append(projectInfo, projectToDoItems);
+            contentWrapper.append(projectWrapper);
+            content.append(contentWrapper);
+
+        }else{
+            console.log("skipped");
+        }
+    }
+
+};
+
+export function loadHomeToDoItems(project){
+    let index = project.getAttribute('data-index');
+    let projectToDoItemsDiv = document.getElementById('projectToDoItems' + index);
+    projectToDoItemsDiv.innerHTML = '';
+    let toDoItems = projects[index].getToDoItems();
+    let toDoItem;
+    let toDoItemPriority;
+    let toDoItemTextWrapper;
+    let toDoItemInfo;
+    let toDoItemTitle;
+    let toDoItemDueDate;
+    let toDoItemDescription;
+    let completeButton;
+    // let changeButtons;
+    // let editButton;
+    // let removeButton;
+
+    for(let i =0 ; i < toDoItems.length; i++){
+        if(typeof toDoItems[i] !== 'undefined' && !toDoItems[i].getCompleted()){
+            toDoItem = document.createElement('div');
+            toDoItemPriority = document.createElement('div');
+            toDoItemTextWrapper = document.createElement('div');
+            toDoItemInfo = document.createElement('div');
+            toDoItemTitle = document.createElement('div');
+            toDoItemDueDate = document.createElement('div');
+            toDoItemDescription = document.createElement('div');
+            completeButton = document.createElement('button');
+            // changeButtons = document.createElement('div');
+            // editButton = document.createElement('div');
+            // removeButton = document.createElement('button');
+
+            toDoItem.className = "toDoItem";
+            toDoItemPriority.className = "priority";
+            toDoItemTextWrapper.className = "toDoItemTextWrapper";
+            toDoItemInfo.className = "toDoItemInfo";
+            toDoItemTitle.className = "toDoItemTitle";
+            toDoItemDueDate.className = "toDoItemDueDate";
+            toDoItemDescription.className = "toDoItemDescription";
+
+            completeButton.className = "completeButton";
+            completeButton.id = "completeButton";
+            // changeButtons.className = "changeButtons";
+            // editButton.className = "editButton";
+            // removeButton.className = "removeButton";
+
+            toDoItemTitle.textContent = "Title: " + toDoItems[i].getTitle();
+            toDoItemDueDate.textContent = "Due Date: " + toDoItems[i].getDueDate();
+            toDoItemDescription.textContent = " Description: " + toDoItems[i].getDescription();
+
+            let priority = toDoItems[i].getPriority();
+            console.log('priority ' + priority);
+            if(priority == "high"){
+                toDoItemPriority.classList.add('high');
+                console.log('low' + toDoItemPriority.classList.contains('low'));
+
+            }else{
+                toDoItemPriority.classList.add('low');
+            }
+            
+            completeButton.setAttribute('data-toDoIndex', i);
+            completeButton.setAttribute('data-projectIndex', index);
+            completeButton.onclick = function(){console.log('complete button'); updateComplete(this, 'home');};
+            
+            // editButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="24px" height="24px"><path d="M18.656.93,6.464,13.122A4.966,4.966,0,0,0,5,16.657V18a1,1,0,0,0,1,1H7.343a4.966,4.966,0,0,0,3.535-1.464L23.07,5.344a3.125,3.125,0,0,0,0-4.414A3.194,3.194,0,0,0,18.656.93Zm3,3L9.464,16.122A3.02,3.02,0,0,1,7.343,17H7v-.343a3.02,3.02,0,0,1,.878-2.121L20.07,2.344a1.148,1.148,0,0,1,1.586,0A1.123,1.123,0,0,1,21.656,3.93Z"/><path d="M23,8.979a1,1,0,0,0-1,1V15H18a3,3,0,0,0-3,3v4H5a3,3,0,0,1-3-3V5A3,3,0,0,1,5,2h9.042a1,1,0,0,0,0-2H5A5.006,5.006,0,0,0,0,5V19a5.006,5.006,0,0,0,5,5H16.343a4.968,4.968,0,0,0,3.536-1.464l2.656-2.658A4.968,4.968,0,0,0,24,16.343V9.979A1,1,0,0,0,23,8.979ZM18.465,21.122a2.975,2.975,0,0,1-1.465.8V18a1,1,0,0,1,1-1h3.925a3.016,3.016,0,0,1-.8,1.464Z"/></svg>';
+            // editButton.setAttribute('data-toDoIndex', i);
+            // editButton.onclick = function(){ console.log('editButton'); editToDoItemForm(this);};
+            // console.log('added editButton');
+            
+            // removeButton.textContent = "X";
+            // removeButton.setAttribute('data-index', i);
+            // removeButton.onclick = function() {deleteToDoItem(this, projectToDoItemsDiv.getAttribute('data-projectIndex')); };
+
+            toDoItemInfo.append(toDoItemTitle, toDoItemDueDate);
+            // changeButtons.append(editButton, removeButton);
+
+            toDoItemTextWrapper.append(toDoItemInfo, toDoItemDescription);
+
+            toDoItem.append(toDoItemPriority, completeButton, toDoItemTextWrapper);
+            projectToDoItemsDiv.append(toDoItem);
+            
+        }
+    }
+}
 
 export function completedLoad(){
     deleteContent();
