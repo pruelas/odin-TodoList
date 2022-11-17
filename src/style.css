@@ -132,6 +132,12 @@ div.sidebar{
     background-image: linear-gradient(rgb(141, 141, 141), rgb(94, 94, 94));
 }
 
+.projectsDiv{
+    display: flex;
+    overflow: scroll;
+    flex-direction: column;
+}
+
 .title{
     /* position: absolute; */
     align-self: center;
@@ -237,6 +243,7 @@ div#content{
     display: flex;
     flex-direction: column;
     /* justify-self: center; */
+    /* overflow: scroll; */
 
 }
 
@@ -319,13 +326,14 @@ div#content{
 }
 .homeProjectWrapper{
     display: flex;
+    border: solid black 2px;
 }
 
 .projectToDoItems{
     display: flex;
     flex-direction: column;
     border: solid black 1px;
-    border-top: solid black 2px;
+    border-top: solid rgb(19, 255, 78) 2px;
     align-self: center;
     width: 95%;
     max-height: 95%;

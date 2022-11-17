@@ -324,6 +324,10 @@ export function loadHomeProjects(){
     projectLabel.textContent = "Projects";
     contentWrapper.append(projectLabel);
 
+    let projectsDiv = document.createElement("div");
+    projectsDiv.className = "projectsDiv";
+
+
     for(let i = 0; i < projects.length; i++){
         if(typeof projects[i] !== "undefined"){
             projectWrapper = document.createElement('div');
@@ -366,7 +370,8 @@ export function loadHomeProjects(){
             
             projectInfo.append(projectTitle, projectDueDate, projectExpandButton, projectCondenseButton);
             projectWrapper.append(projectInfo, projectToDoItems);
-            contentWrapper.append(projectWrapper);
+            projectsDiv.append(projectWrapper);
+            contentWrapper.append(projectsDiv);
             content.append(contentWrapper);
 
         }else{
