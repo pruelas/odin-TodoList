@@ -212,6 +212,7 @@ export function loadProjectToDoItems(toDoItems, projectToDoItemsDiv){
 
 export function updateComplete(project, tab){
     if(tab == 'project'){
+        console.log('project');
         let projectToDoItemsDiv = document.getElementById('projectToDoItemsDiv');
         let toDoIndex = project.getAttribute('data-toDoindex');
         let projectIndex = document.getElementById("projectToDoItemsDiv").getAttribute('data-projectIndex');
@@ -233,11 +234,12 @@ export function updateComplete(project, tab){
         }
         loadProjectToDoItems(toDoItems, projectToDoItemsDiv);
     }else{
+        console.log('home');
         let toDoIndex = project.getAttribute('data-toDoIndex');
-        let projectIndex = project.getAttribute('data-projectIndex');
+        let projectIndex = project.getAttribute('data-index');
         // let projectToDoItemsDiv = document.getElementById('projectToDoItems' + toDoIndex); 
         projects[projectIndex].completeToDoItem(toDoIndex);
-        loadHomeToDoItems(projectIndex);
+        loadHomeToDoItems(project);
     }  
 }
 
@@ -314,6 +316,7 @@ export function loadHomeProjects(){
     let projectTitle;
     let projectDueDate;
     let projectExpandButton;
+    let projectCondenseButton;
     let projectToDoItems;
 
     let projectLabel = document.createElement('div');
@@ -328,6 +331,7 @@ export function loadHomeProjects(){
             projectTitle = document.createElement('div');
             projectDueDate = document.createElement('div');
             projectExpandButton = document.createElement('button');
+            projectCondenseButton = document.createElement('button');
             projectToDoItems = document.createElement('div');
             
             projectWrapper.className = "homeProjectWrapper";
@@ -336,6 +340,7 @@ export function loadHomeProjects(){
             projectDueDate.className = "homeProjectDueDate";
             projectToDoItems.className = "projectToDoItems";
             projectExpandButton.className = "projectExpandtButton";
+            projectCondenseButton.className = "projectCondenseButton";
 
             //add eventListener to display project todoItems contents when clicked
             projectWrapper.setAttribute('data-index', i);
@@ -345,15 +350,21 @@ export function loadHomeProjects(){
             //projectIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="24px" height="24px"><path d="M17.5,24H6.5c-2.481,0-4.5-2.019-4.5-4.5V4.5C2,2.019,4.019,0,6.5,0h11c2.481,0,4.5,2.019,4.5,4.5v15c0,2.481-2.019,4.5-4.5,4.5ZM6.5,1c-1.93,0-3.5,1.57-3.5,3.5v15c0,1.93,1.57,3.5,3.5,3.5h11c1.93,0,3.5-1.57,3.5-3.5V4.5c0-1.93-1.57-3.5-3.5-3.5H6.5Zm11.5,4.5c0-.276-.224-.5-.5-.5h-6c-.276,0-.5,.224-.5,.5s.224,.5,.5,.5h6c.276,0,.5-.224,.5-.5Zm0,6c0-.276-.224-.5-.5-.5h-6c-.276,0-.5,.224-.5,.5s.224,.5,.5,.5h6c.276,0,.5-.224,.5-.5Zm0,6c0-.276-.224-.5-.5-.5h-6c-.276,0-.5,.224-.5,.5s.224,.5,.5,.5h6c.276,0,.5-.224,.5-.5ZM8.5,7h-2c-.276,0-.5-.224-.5-.5v-2c0-.276,.224-.5,.5-.5h2c.276,0,.5,.224,.5,.5v2c0,.276-.224,.5-.5,.5Zm-1.5-1h1v-1h-1v1Zm1.5,7h-2c-.276,0-.5-.224-.5-.5v-2c0-.276,.224-.5,.5-.5h2c.276,0,.5,.224,.5,.5v2c0,.276-.224,.5-.5,.5Zm-1.5-1h1v-1h-1v1Zm1.5,7h-2c-.276,0-.5-.224-.5-.5v-2c0-.276,.224-.5,.5-.5h2c.276,0,.5,.224,.5,.5v2c0,.276-.224,.5-.5,.5Zm-1.5-1h1v-1h-1v1Z"/></svg>';
             projectTitle.textContent = "Title: " + projects[i].getTitle();
             projectDueDate.textContent = "Due Date: " + projects[i].getDueDate();
-            projectExpandButton.textContent = "\/";
+            projectExpandButton.textContent = "\\/";
+            projectCondenseButton.textContent = "/\\";
 
             projectToDoItems.id = 'projectToDoItems' + i;
             console.log(projectToDoItems.id);
+
+            projectExpandButton.id = 'projectExpandButton' + i;
             projectExpandButton.setAttribute('data-index', i);
             projectExpandButton.onclick = function(e){ /*e.stopPropagation(); deleteProject(this); */ console.log('expand'); loadHomeToDoItems(this);};
 
+            projectCondenseButton.id = 'projectCondenseButton' + i;
+            projectCondenseButton.setAttribute('data-index', i);
+            projectCondenseButton.onclick = function(e){console.log('condense'); unloadHomeToDoItems(this);};
             
-            projectInfo.append(projectTitle, projectDueDate, projectExpandButton);
+            projectInfo.append(projectTitle, projectDueDate, projectExpandButton, projectCondenseButton);
             projectWrapper.append(projectInfo, projectToDoItems);
             contentWrapper.append(projectWrapper);
             content.append(contentWrapper);
@@ -365,10 +376,24 @@ export function loadHomeProjects(){
 
 };
 
+export function unloadHomeToDoItems(project){
+    let index = project.getAttribute('data-index');
+    let projectToDoItemsDiv = document.getElementById('projectToDoItems' + index);
+    projectToDoItemsDiv.innerHTML = '';
+    let projectExpandButton = document.getElementById('projectExpandButton' + index);
+    projectExpandButton.style.display = "inline";
+    let projectCondenseButton = document.getElementById('projectCondenseButton' + index);
+    projectCondenseButton.style.display = "none";
+};
+
 export function loadHomeToDoItems(project){
     let index = project.getAttribute('data-index');
     let projectToDoItemsDiv = document.getElementById('projectToDoItems' + index);
     projectToDoItemsDiv.innerHTML = '';
+    let projectExpandButton = document.getElementById('projectExpandButton' + index);
+    projectExpandButton.style.display = "none";
+    let projectCondenseButton = document.getElementById('projectCondenseButton' + index);
+    projectCondenseButton.style.display = "inline";
     let toDoItems = projects[index].getToDoItems();
     let toDoItem;
     let toDoItemPriority;
@@ -425,8 +450,9 @@ export function loadHomeToDoItems(project){
             }
             
             completeButton.setAttribute('data-toDoIndex', i);
-            completeButton.setAttribute('data-projectIndex', index);
-            completeButton.onclick = function(){console.log('complete button'); updateComplete(this, 'home');};
+            completeButton.setAttribute('data-index', index);
+            console.log(completeButton.getAttribute('data-toDoIndex'));
+            completeButton.onclick = function(e){console.log('complete button'); updateComplete(this, 'home');};
             
             // editButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="24px" height="24px"><path d="M18.656.93,6.464,13.122A4.966,4.966,0,0,0,5,16.657V18a1,1,0,0,0,1,1H7.343a4.966,4.966,0,0,0,3.535-1.464L23.07,5.344a3.125,3.125,0,0,0,0-4.414A3.194,3.194,0,0,0,18.656.93Zm3,3L9.464,16.122A3.02,3.02,0,0,1,7.343,17H7v-.343a3.02,3.02,0,0,1,.878-2.121L20.07,2.344a1.148,1.148,0,0,1,1.586,0A1.123,1.123,0,0,1,21.656,3.93Z"/><path d="M23,8.979a1,1,0,0,0-1,1V15H18a3,3,0,0,0-3,3v4H5a3,3,0,0,1-3-3V5A3,3,0,0,1,5,2h9.042a1,1,0,0,0,0-2H5A5.006,5.006,0,0,0,0,5V19a5.006,5.006,0,0,0,5,5H16.343a4.968,4.968,0,0,0,3.536-1.464l2.656-2.658A4.968,4.968,0,0,0,24,16.343V9.979A1,1,0,0,0,23,8.979ZM18.465,21.122a2.975,2.975,0,0,1-1.465.8V18a1,1,0,0,1,1-1h3.925a3.016,3.016,0,0,1-.8,1.464Z"/></svg>';
             // editButton.setAttribute('data-toDoIndex', i);

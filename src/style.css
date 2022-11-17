@@ -293,9 +293,9 @@ div#content{
     /* justify-self: center; */
 }
 
-.homeProjectInfo:hover{
+/* .homeProjectInfo:hover{
     background-image: linear-gradient(rgb(204, 204, 204), rgb(235, 235, 235));
-}
+} */
 
 .homeProjectTitle{
     flex:2;
@@ -313,6 +313,14 @@ div#content{
     font-size: 2rem;
 }
 
+.projectCondenseButton{
+    display: none;
+    /* font-size: 2rem; */
+}
+.homeProjectWrapper{
+    display: flex;
+}
+
 .projectToDoItems{
     display: flex;
     flex-direction: column;
@@ -328,7 +336,7 @@ div#content{
 
 .projectInfo{
     position: relative;
-    display: flex;
+    display:flex;
     /* border: solid green 2px; */
     /* border-radius: 2rem; */
     border: solid black 2px;
