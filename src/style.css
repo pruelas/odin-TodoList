@@ -478,6 +478,10 @@ div#content{
     /* overflow: hidden; */
 }
 
+/* .completedItemd{
+    background-image: linear-gradient(rgb(179, 179, 179), rgb(179, 179, 179));
+} */
+
 .priority{
     height: 90%;
     border: solid black 1px;

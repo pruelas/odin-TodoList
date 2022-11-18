@@ -119,9 +119,9 @@ document.body.addEventListener('click', function(e){
 });
 
 document.body.addEventListener('click', function(e){
-    var addProjectForm = document.getElementById("projectForm");
-    if( (e.target.className !== "editProjectForm" && e.target.className !=="editProject" && e.target instanceof HTMLDivElement) && addProjectForm.style.visibility !=="hidden"){
-        addProjectForm.style.visibility = 'hidden';
+    var editProjectForm = document.getElementById("projectForm");
+    if( (e.target.className !== "editProjectForm" && e.target.className !=="editProject" && e.target instanceof HTMLDivElement) && editProjectForm.style.visibility !=="hidden"){
+        editProjectForm.style.visibility = 'hidden';
     }
 });
 
