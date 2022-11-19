@@ -256,6 +256,7 @@ export function updateComplete(project, tab){
 export function projectLoad(project){
     console.log("projectLoad");
     let content = document.getElementById("content");
+    content.innerHTML = "";
     let contentWrapper = document.createElement("div");
     let projectInfo = document.createElement("div");
     let projectTitleLabel = document.createElement("div");
@@ -372,7 +373,7 @@ export function loadHomeProjects(){
             projectTitle.className = "homeProjectTitle";
             projectDueDate.className = "homeProjectDueDate";
             projectToDoItems.className = "projectToDoItems";
-            projectExpandButton.className = "projectExpandtButton";
+            projectExpandButton.className = "projectExpandButton";
             projectCondenseButton.className = "projectCondenseButton";
 
             //add eventListener to display project todoItems contents when clicked
@@ -414,6 +415,7 @@ export function loadHomeProjects(){
 export function unloadHomeToDoItems(project){
     let index = project.getAttribute('data-index');
     let projectToDoItemsDiv = document.getElementById('projectToDoItems' + index);
+    projectToDoItemsDiv.style.display = 'none';
     projectToDoItemsDiv.innerHTML = '';
     let projectExpandButton = document.getElementById('projectExpandButton' + index);
     projectExpandButton.style.display = "inline";
@@ -424,12 +426,14 @@ export function unloadHomeToDoItems(project){
 export function loadHomeToDoItems(project){
     let index = project.getAttribute('data-index');
     let projectToDoItemsDiv = document.getElementById('projectToDoItems' + index);
+    projectToDoItemsDiv.style.display = 'flex';
     projectToDoItemsDiv.innerHTML = '';
     let projectExpandButton = document.getElementById('projectExpandButton' + index);
     projectExpandButton.style.display = "none";
     let projectCondenseButton = document.getElementById('projectCondenseButton' + index);
     projectCondenseButton.style.display = "inline";
     let toDoItems = projects[index].getToDoItems();
+    console.log('before sort');
     sortToDoItems(toDoItems);
     let toDoItem;
     let toDoItemPriority;
@@ -657,11 +661,22 @@ addProject.addEventListener('submit', function(e){
     let selectedTab = document.querySelector(".selected");
     if(selectedTab !== null){
         let indexOfSelectedTab = selectedTab.getAttribute('data-index');
+        console.log("index " + indexOfSelectedTab);
         if(selectedTab.id == 'home'){
             homeLoad();
             loadProjectSidebar(-1);
         }else{
-            loadProjectSidebar(indexOfSelectedTab);
+            if(projects[projects.length-1].getDueDate() >= projects[indexOfSelectedTab].getDueDate()){
+                loadProjectSidebar(indexOfSelectedTab);
+                selectedTab.setAttribute('data-index', indexOfSelectedTab);
+                projectLoad(selectedTab);
+
+            }else{
+                loadProjectSidebar(Number(indexOfSelectedTab) + 1);
+                selectedTab.setAttribute('data-index', Number(indexOfSelectedTab)+1);
+                projectLoad(selectedTab);
+            }
+            
         }
     }else{
         loadProjectSidebar(-1);
@@ -677,25 +692,40 @@ editProject.addEventListener('submit', function(e){
     document.getElementById("editProjectForm").style.display = "none";
     let index = document.getElementById('editProject').getAttribute('data-index');
     projects[index].changeTitle(editProject.elements['projectTitle'].value);
-    projects[index].changeDueDate(new Date(editProject.elements['projectDueDate'].value));
-    deleteContent();
-    loadProjectSidebar(index);
-    projectLoad(document.getElementById('editProject'));
+    let newDate = new Date(editProject.elements['projectDueDate'].value);
+    
+    let selectedTab = document.querySelector(".selected");
+    if(newDate >= projects[index].getDueDate()){
+        loadProjectSidebar(index);
+        selectedTab.setAttribute('data-index', index);
+        projectLoad(selectedTab);
+
+    }else{
+        loadProjectSidebar(Number(index) + 1);
+        selectedTab.setAttribute('data-index', Number(index)+1);
+        projectLoad(selectedTab);
+            
+    }
+    projects[index].changeDueDate(newDate);
+    // deleteContent();
+    // loadProjectSidebar(index);
+    // projectLoad(document.getElementById('editProject'));
     e.preventDefault();
 });
 
 export function deleteProject(project){
     console.log(project.getAttribute('data-index'));
+    let selectedTab = document.querySelector(".selected");
     delete projects[project.getAttribute("data-index")];
     console.log('deleting project');
     deleteSidebarContent();
-    let selectedTab = document.querySelector(".selected");
+    loadProjectSidebar(-1);
+
     console.log(selectedTab);
     if(selectedTab !== null){
         console.log(selectedTab.id);
         let indexOfSelectedTab = selectedTab.getAttribute('data-index');
         if(indexOfSelectedTab == project.getAttribute('data-index')){
-            deleteContent();
             homeLoad();
         }else if(selectedTab.id == "home"){
             homeLoad();
@@ -704,7 +734,7 @@ export function deleteProject(project){
     console.log('selected');
     console.log(selectedTab);
     
-    loadProjectSidebar(-1);
+    
     
 }
 
@@ -727,6 +757,6 @@ export function deleteContent(){
 }
 
 export function deleteSidebarContent(){
-    let projectSidebar = document.getElementById('projectSidebar');
+    let projectSidebar = document.getElementById('projects');
     projectSidebar.innerHTML = '';
 }

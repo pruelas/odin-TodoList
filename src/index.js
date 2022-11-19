@@ -104,30 +104,50 @@ tabs.forEach(tab => {
 //     });
 // }
 
+// if( (e.target.className !=="addBookForm" && e.target.className !=="hasRead" && e.target.className !=="addBook" && e.target instanceof HTMLDivElement) && addBookForm.style.visibility !=="hidden"){
+//     addBookForm.style.visibility = 'hidden';
+// }
+
 document.body.addEventListener('click', function(e){
-    var addProjectForm = document.getElementById("projectForm");
-    if( (e.target.className !== "addProjectForm" && e.target.className !=="addProject" && e.target instanceof HTMLDivElement) && addProjectForm.style.visibility !=="hidden"){
-        addProjectForm.style.visibility = 'hidden';
+    console.log(e.target.className);
+    var projectForm = document.getElementById("projectForm")
+    var addProjectForm = document.getElementById("addProjectForm");
+    if( (e.target.className !== "addProjectForm" && e.target instanceof HTMLDivElement) && projectForm.style.visibility !="hidden" && addProjectForm.style.display != 'none'){
+        addProjectForm.style.display = 'none';
+        projectForm.style.visibility = "hidden";
+        console.log("hidden");
     }
 });
 
 document.body.addEventListener('click', function(e){
-    var addToDoItemForm = document.getElementById("toDoItemForm");
-    if( (e.target.className !== "addToDoItemForm" && e.target.className !=="priority" && e.target instanceof HTMLDivElement) && addToDoItemForm.style.visibility !=="hidden"){
-        addToDoItemForm.style.visibility = 'hidden';
+    console.log(e.target);
+    var projectForm = document.getElementById("projectForm")
+    var editProjectForm = document.getElementById("editProjectForm");
+    if( (e.target.className !== "editProjectForm" && e.target instanceof HTMLDivElement) && projectForm.style.visibility !="hidden" && editProjectForm.style.display != 'none'){
+        editProjectForm.style.display = 'none';
+        projectForm.style.visibility = "hidden";
+        console.log("hidden");
     }
 });
 
 document.body.addEventListener('click', function(e){
-    var editProjectForm = document.getElementById("projectForm");
-    if( (e.target.className !== "editProjectForm" && e.target.className !=="editProject" && e.target instanceof HTMLDivElement) && editProjectForm.style.visibility !=="hidden"){
-        editProjectForm.style.visibility = 'hidden';
+    console.log(e.target);
+    var toDoItemForm = document.getElementById("toDoItemForm");
+    var addToDoItemForm = document.getElementById("addToDoItemForm");
+    if( (e.target.className !== "addToDoItemForm" && e.target.className !=="priority" && e.target instanceof HTMLDivElement) && toDoItemForm.style.visibility !=="hidden" && addToDoItemForm.style.display != 'none'){
+        addToDoItemForm.style.display = 'none';
+        toDoItemForm.style.visibility = "hidden";
+        console.log("hidden");
     }
 });
 
 document.body.addEventListener('click', function(e){
-    var editToDoItemForm = document.getElementById("toDoItemForm");
-    if( (e.target.className !== "editToDoItemForm" && e.target.className !=="priority" && e.target instanceof HTMLDivElement) && editToDoItemForm.style.visibility !=="hidden"){
-        editToDoItemForm.style.visibility = 'hidden';
+    console.log(e.target);
+    var toDoItemForm = document.getElementById("toDoItemForm");
+    var editToDoItemForm = document.getElementById("editToDoItemForm");
+    if( (e.target.className !== "editToDoItemForm" && e.target.className !=="priority" && e.target instanceof HTMLDivElement) && toDoItemForm.style.visibility !=="hidden" && editToDoItemForm.style.display != 'none'){
+        editToDoItemForm.style.display= 'none';
+        toDoItemForm.style.visibility = "hidden";
+        console.log("hidden");
     }
 });

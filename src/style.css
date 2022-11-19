@@ -239,7 +239,7 @@ div#content{
     width: 100%;
     height: 100%;
     background-color: rgb(240, 240, 240);
-    border: solid red 2px;
+    /* border: solid red 2px; */
     display: flex;
     flex-direction: column;
     /* justify-self: center; */
@@ -273,12 +273,12 @@ div#content{
     /* background-image: linear-gradient(rgb(235, 235, 235), rgb(204, 204, 204)); */
     /* padding: .7rem 0rem; */
     /* padding-left: .2rem; */
-    margin-top: .1rem;
+    /* margin-top: .1rem; */
     /* border-radius: 1rem; */
     align-self: center;
     justify-content: center;
     align-items: center;
-    border-bottom: solid white 1px;
+    /* border-bottom: solid white 1px; */
 }
 
 .homeProjectInfo{
@@ -287,11 +287,12 @@ div#content{
     display: flex;
     /* border: solid green 2px; */
     /* border-radius: 2rem; */
-    border: solid rgb(94, 255, 0) 2px;
-    background-image: linear-gradient(rgb(235, 235, 235), rgb(204, 204, 204));
+    border-top: solid black 1px;
+    border-bottom: solid rgb(0, 0, 0) 1px;
+    background-image: linear-gradient(rgb(240, 240, 240), rgb(202, 202, 202));
     /* margin-top: 3rem; */
     /* padding: 1rem; */
-    padding: .7rem  0rem 0rem 0rem;
+    padding: 1rem .7rem;
     width: 100%;
     /* align-self: center; */
     align-content: center;
@@ -306,39 +307,54 @@ div#content{
 
 .homeProjectTitle{
     flex:2;
-    border: solid purple 1px;
+    /* border: solid purple 1px; */
     font-size: 2rem;
 }
 
 .homeProjectDueDate{
     flex:1;
-    border: blue solid 1px;
+    /* border: blue solid 1px; */
     font-size: 2rem;
 }
 
 .projectExpandButton{
-    font-size: 2rem;
+    /* font-size: 2rem; */
+    padding: 0rem .5rem;
+    background-color: white;
+    border: solid black 1px;
+}
+
+.projectExpandButton:hover{
+    background-color: rgb(182, 182, 182);
 }
 
 .projectCondenseButton{
     display: none;
     /* font-size: 2rem; */
+    padding: 0rem .5rem;
+    background-color: white;
+    border: solid black 1px;
 }
+
+.projectCondenseButton:hover{
+    background-color: rgb(182, 182, 182);
+}
+
 .homeProjectWrapper{
     display: flex;
-    border: solid black 2px;
+    /* border: solid black 2px; */
 }
 
 .projectToDoItems{
-    display: flex;
+    display: none;
     flex-direction: column;
     border: solid black 1px;
-    border-top: solid rgb(19, 255, 78) 2px;
+    /* border-top: solid rgb(0, 0, 0) 2px; */
     align-self: center;
     width: 95%;
     max-height: 95%;
     overflow: scroll;
-    margin-bottom: 1rem;
+    margin-bottom: .5rem;
 }
 
 
