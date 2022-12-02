@@ -15,14 +15,12 @@ body{
     "sidebar content"
     "sidebar content"
     "sidebar content";
-    /* border: solid black 2px; */
     background-color: rgb(255, 255, 255);
 }
 
 div.header{
     grid-area: header;
     background-image: linear-gradient(rgb(218, 218, 218), rgb(211, 211, 211));
-    /* border: solid black 1px; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -37,7 +35,6 @@ div.sidebar{
     flex-direction: column;
     background-color: rgb(218, 218, 218);
     height: 100%;
-    /* border: solid rgb(185, 39, 39) 1px; */
     align-items: center;
     overflow-x: visible;
     border-right: solid black 2px;
@@ -46,7 +43,6 @@ div.sidebar{
 .navigation{
     margin-top: 1em;
     display:grid;
-    /* gap: .7rem; */
     margin-bottom: 1em;
     width: 95%;
     font-size: 1.2rem;
@@ -55,12 +51,10 @@ div.sidebar{
 .navigation > .tabs{
     display: flex;
     padding: 1rem 0;
-    /* padding-left: .4rem; */
     border-radius: 1rem;
     border-bottom: solid white 1px;
     align-content: center;
     width: 100%;
-    /* text-align: center; */
 }
 
 .tabs > svg{
@@ -68,7 +62,6 @@ div.sidebar{
 }
 
 .tabs > div{
-    /* border: solid red 1px; */
     align-self: center;
 }
 
@@ -95,37 +88,23 @@ div.sidebar{
 
 
 #projects{
-    /* position: relative; */
     display: flex;
     flex-direction: column;
-    /* border: solid red 1px; */
     width: 95%;
     max-height: 90%;
-    /* gap: .7rem; */
     overflow-y: scroll;
-    /* overflow-x: visible; */
     margin-bottom: .1rem;
 }
 
 .projectWrapper{
     position: relative;
     display:flex;
-    /* height: fit-content; */
-    /* flex-direction: row; */
-    /* width: 0; */
-    /* min-width: 100%; */
-    /* background-color: rgb(120, 78, 136); */
-    /* border: solid rgb(255, 255, 255) 1px; */
-    /* justify-content: space-between; */
-    /* overflow: hidden; */
-    /* background-image: linear-gradient(rgb(119, 75, 160), rgb(97, 63, 129)); */
     padding: .7rem 0rem;
     padding-left: .2rem;
     margin-top: .1rem;
     border-radius: 1rem;
     align-items: center;
     border-bottom: solid white 1px;
-    /* box-shadow: 1px 4px 1px 1px rgb(0, 0, 0); */
 }
 
 .projectWrapper:hover{
@@ -139,40 +118,15 @@ div.sidebar{
 }
 
 .title{
-    /* position: absolute; */
+
     align-self: center;
     width: 80%;
-    /* height: 100%; */
-    /* border: solid white 1px; */
-    /* padding: .5rem 0rem;
-    padding-left: .4rem;
-    margin-top: .1rem; */
     border-radius: .2rem;
-    /* overflow:hidden; */
     text-overflow: ellipsis;
     word-break: break-word;
 }
 
-.title:hover{
-    /* position: absolute; */
-    /* align-self: center; */
-    /* align-self: baseline; */
-    /* overflow: visible; */
-    /* width: fit-content; */
-    /* border: 1px solid #eee; */
-    /* box-shadow: 0rem .1rem .1rem 0rem black; */
-    /* padding:inherit; */
-    /* white-space: normal; */
-    /* bottom: 5%; */
-    /* word-break: break-word; */
-    /* z-index:5; */
-    /* background-color:rgb(158, 130, 165); */
-}
-
 .projectIcon > svg{
-    /* align-self: center; */
-    /* border: solid white 1px; */
-    /* justify-self: center; */
     margin-right: .2rem;
 }
 
@@ -189,9 +143,6 @@ div.sidebar{
     font-size: .8rem;
     font-weight: bold;
     text-align: center;
-	/* cursor: pointer; */
-	/* outline: inherit; */
-    /* margin-right: .4rem; */
 }
 
 .projectWrapper:hover > .removeProjectButton{
@@ -199,11 +150,6 @@ div.sidebar{
     background-color: white;
     padding: .4rem;
     border-radius: 50%;
-}
-
-.projectWrapper button{
-    /* position: absolute; */
-    /* align-self: flex-end; */
 }
 
 #addProjectButton{
@@ -224,12 +170,9 @@ div#content{
     height: 100%;
     width: 100%;
     display: flex;
-    /* align-items: center; */
-    /* justify-content: center; */
     display: flex;
     flex-direction: row;
     position: relative;
-    /* border: solid green 2px; */
     justify-content: center;
     align-items: center;
     background-color: rgb(240, 240, 240);
@@ -239,86 +182,51 @@ div#content{
     width: 100%;
     height: 100%;
     background-color: rgb(240, 240, 240);
-    /* border: solid red 2px; */
     display: flex;
     flex-direction: column;
-    /* justify-self: center; */
-    /* overflow: scroll; */
-
 }
 
 .projectsLabel{
     width: 95%;
     font-size: 4rem;
     border-bottom: solid 3px black;
-    /* border: black solid 1px; */
     padding: .7rem;
     align-self: center;
     margin-top: 1rem;
-    /* font-weight: bold; */
 }
 
 .homeProjectWrapper{
-    /* position: relative; */
     display:flex;
     flex-direction: column;
-    /* height: fit-content; */
-    /* flex-direction: row; */
     width: 95%;
-    /* min-width: 100%; */
-    /* background-color: rgb(120, 78, 136); */
-    /* border: solid rgb(255, 255, 255) 1px; */
-    /* justify-content: space-between; */
-    /* overflow: hidden; */
-    /* background-image: linear-gradient(rgb(235, 235, 235), rgb(204, 204, 204)); */
-    /* padding: .7rem 0rem; */
-    /* padding-left: .2rem; */
-    /* margin-top: .1rem; */
-    /* border-radius: 1rem; */
     align-self: center;
     justify-content: center;
     align-items: center;
-    /* border-bottom: solid white 1px; */
 }
 
 .homeProjectInfo{
     position: relative;
     flex: 1;
     display: flex;
-    /* border: solid green 2px; */
-    /* border-radius: 2rem; */
     border-top: solid black 1px;
     border-bottom: solid rgb(0, 0, 0) 1px;
     background-image: linear-gradient(rgb(240, 240, 240), rgb(202, 202, 202));
-    /* margin-top: 3rem; */
-    /* padding: 1rem; */
     padding: 1rem .7rem;
     width: 100%;
-    /* align-self: center; */
     align-content: center;
-    /* margin-bottom: .4rem; */
-    /* background-image: linear-gradient(rgb(235, 235, 235), rgb(240, 240, 240)); */
-    /* justify-self: center; */
 }
-
-/* .homeProjectInfo:hover{
-    background-image: linear-gradient(rgb(204, 204, 204), rgb(235, 235, 235));
-} */
 
 .homeProjectTitle{
     flex:2;
-    /* border: solid purple 1px; */
     font-size: 2rem;
 }
 
 .homeProjectDueDate{
     flex:1;
-    /* border: blue solid 1px; */
     font-size: 2rem;
 }
 
 .projectExpandButton{
-    /* font-size: 2rem; */
     padding: 0rem .5rem;
     background-color: white;
     border: solid black 1px;
@@ -330,7 +238,6 @@ div#content{
 
 .projectCondenseButton{
     display: none;
-    /* font-size: 2rem; */
     padding: 0rem .5rem;
     background-color: white;
     border: solid black 1px;
@@ -342,14 +249,12 @@ div#content{
 
 .homeProjectWrapper{
     display: flex;
-    /* border: solid black 2px; */
 }
 
 .projectToDoItems{
     display: none;
     flex-direction: column;
     border: solid black 1px;
-    /* border-top: solid rgb(0, 0, 0) 2px; */
     align-self: center;
     width: 95%;
     max-height: 95%;
@@ -361,8 +266,6 @@ div#content{
 .projectInfo{
     position: relative;
     display:flex;
-    /* border: solid green 2px; */
-    /* border-radius: 2rem; */
     border: solid black 2px;
     margin-top: 3rem;
     padding: 1rem;
@@ -375,11 +278,9 @@ div#content{
 
 .projectTitle{
     height: 100%;
-    /* border: solid greenyellow 2px; */
     display: flex;
     font-size: 3rem;
     flex-grow: 1;
-    /* flex: 1 1 auto; */
     margin-right: 4rem;
     align-items: end;
     word-break: break-word;
@@ -387,26 +288,20 @@ div#content{
 
 .projectDueDate{
     display: flex;
-    /* border: solid limegreen 2px; */
     height: 100%;
     align-self: center;
-    font-size: 3rem;
-    /* align-items:end; */
-    /* text-align: center; */   
+    font-size: 3rem; 
     word-break: break-word;
 }
 
 .projectInfo:hover > .projectEdit{
     display: flex;
     right: .5rem;
-    /* position: absolute; */
-
 }
 
 .projectInfo:hover > .projectRemove{
     display: flex;
     right: .2rem;
-    /* position:absolute; */
 }
 
 .projectEdit{
@@ -417,8 +312,6 @@ div#content{
     height: 2rem;
     width: 2rem;
     margin-right: .2rem;
-    /* border: solid black 1px; */
-    /* border-radius: 1rem; */
 }
 
 .projectEdit > svg{
@@ -491,12 +384,7 @@ div#content{
     align-items: center;
     background-image: linear-gradient(rgb(235, 235, 235), rgb(204, 204, 204));
     border-bottom: white solid 1px;
-    /* overflow: hidden; */
 }
-
-/* .completedItemd{
-    background-image: linear-gradient(rgb(179, 179, 179), rgb(179, 179, 179));
-} */
 
 .priority{
     height: 90%;
@@ -556,7 +444,6 @@ div#content{
     width: 1.3rem;
     left: .8rem;
     padding: .5rem;
-    /* font-size: 1rem; */
     border: solid black 2px;
     background-color: white;
     border-radius: 2rem;
@@ -565,14 +452,8 @@ div#content{
 }
 
 .completeButton > svg{
-    /* display: flex; */
-        /* flex: 1; */
-     /* align-items: center;
-     justify-self: center;
-     position: absolute; */
      min-height: 1.2rem;
      min-width: 1.2rem;
-     /* border: solid black 1px; */
 }
 
 .completed{
@@ -635,33 +516,13 @@ div#content{
     color: rgb(0, 0, 0);
 }
 
-/* .changeButtons{
-    display:none;
-
-} */
-
-/* .toDoItem:hover > .removeButton{
-    display:flex;
-    background-color: white;
-    padding: .4rem;
-    border-radius: 50%;
-    align-items: center;
-    justify-items: center;
-} */
-
-/* div#projectForm{
-    display: none;
-} */
-
 .projectForm{
     position: absolute;
     border: rgb(221, 0, 0) solid 1px;
     display: flex;
     align-self: center;
     justify-self: center;
-    /* top: 15vh; */
     background-color: rgba(170, 170, 170, 0.616);
-    /* z-index: 1; */
     height: 100%;
     width: 100%;
     align-items: center;
@@ -708,7 +569,6 @@ div#toDoItemForm{
     display: flex;
     align-self: center;
     justify-self: center;
-    /* top: 15vh; */
     background-color: rgba(167, 167, 167, 0.575);
     height: 100%;
     width: 100%;
@@ -751,7 +611,6 @@ div#toDoItemForm{
 
 .priority{
     display: flex;
-    /* flex-direction: column; */
     justify-content: center;
     gap: 1rem;
 }
